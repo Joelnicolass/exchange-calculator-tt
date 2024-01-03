@@ -18,7 +18,7 @@ class CurrencyUseCases {
    * Returns a use case for getting all available currencies.
    * @returns The GetCurrenciesUseCase instance.
    */
-  get currencies(): GetCurrenciesUseCase {
+  get getCurrencies(): GetCurrenciesUseCase {
     return new GetCurrenciesUseCase(this._repository);
   }
 
@@ -26,7 +26,7 @@ class CurrencyUseCases {
    * Returns a use case for getting exchange rates based on a specific currency.
    * @returns The GetRatesByBaseCurrencyUseCase instance.
    */
-  get ratesByBaseCurrency(): GetRatesByBaseCurrencyUseCase {
+  get getRatesByBaseCurrency(): GetRatesByBaseCurrencyUseCase {
     return new GetRatesByBaseCurrencyUseCase(this._repository);
   }
 }

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL_CURRENCY_API = "https://vatcomply.com";
+const BASE_URL_CURRENCY_API = "https://api.vatcomply.com";
 
 /**
  * API instance for Vatcomply service.

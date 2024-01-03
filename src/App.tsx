@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useState } from "react";
+import { currencyUseCases } from "./features/calculator/infrastructure/usecases/currency.usecases_impl";
+import { Currency } from "./features/calculator/domain/entities/currency/currency.entity";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [currencies, setCurrencies] = useState<Map<string, Currency>>(
+    new Map()
+  );
+
+  useEffect(() => {
+    const getCurrencies = async () => {
+      (await currencyUseCases.getCurrencies.execute()).fold(
+        (error) => console.log(error),
+        (response) => {
+          const currenciesMap = new Map(
+            response.map((currency) => [currency.id, currency])
+          );
+          setCurrencies(currenciesMap);
+        }
+      );
+    };
+
+    getCurrencies();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div
+      className="
+      flex
+      flex-col
+      items-center
+      justify-center
+      min-h-screen
+    "
+    >
+      <form>
+        <select
+          className="
+            border
+            border-gray-300
+            rounded
+            px-4
+            py-2
+            w-full
+          "
+        >
+          {Array.from(currencies.values()).map((currency) => (
+            <option key={currency.id} value={currency.id}>
+              {currency.name}
+            </option>
+          ))}
+        </select>
+      </form>
+    </div>
+  );
+};
 
-export default App
+export default App;
