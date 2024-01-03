@@ -15,8 +15,9 @@ export class GetRatesByBaseCurrencyUseCase {
 
   /**
    * Executes the use case to get rates by base currency.
+   *
    * @param baseCurrency The base currency.
-   * @returns A promise that resolves to either an error or an array of currencies.
+   * @returns A promise that resolves to either an error or the rate.
    */
   async execute(baseCurrency: Currency): Promise<Either<Error, Rate>> {
     return await this._repository.getRatesByBaseCurrency(baseCurrency);
