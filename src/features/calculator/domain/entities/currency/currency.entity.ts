@@ -12,7 +12,7 @@ export class Currency {
    * @param name - The name of the currency.
    * @param symbol - The symbol of the currency.
    */
-  constructor(name: string, symbol: string, id: string) {
+  constructor(id: string, name: string, symbol: string) {
     this._id = id;
     this._name = name;
     this._symbol = symbol;
