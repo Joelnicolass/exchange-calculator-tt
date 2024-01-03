@@ -17,9 +17,9 @@ export class CurrencyRepositoryImpl implements CurrencyRepository {
 
   /**
    * Retrieves the list of currencies.
-   * @returns A promise that resolves to either an error or an array of Currency objects.
+   * @returns A promise that resolves to either an error or an Map of Currency objects.
    */
-  async getCurrencies(): Promise<Either<Error, Currency[]>> {
+  async getCurrencies(): Promise<Either<Error, Map<Currency["id"], Currency>>> {
     return await this._datasource.getCurrencies();
   }
 

@@ -8,15 +8,16 @@ import { CurrencyAPIResponse } from "../../types/api.types";
  */
 export const currencyApiResponseAdapter = (
   currencyApiResponse: CurrencyAPIResponse
-): Currency[] => {
-  const toArrayOfCurrencies = Object.keys(currencyApiResponse).map(
-    (key) =>
-      new Currency(
+): Map<Currency["id"], Currency> =>
+  new Map(
+    Object.keys(currencyApiResponse).map((key) => {
+      return [
         key,
-        currencyApiResponse[key].name,
-        currencyApiResponse[key].symbol
-      )
+        new Currency(
+          key,
+          currencyApiResponse[key].name,
+          currencyApiResponse[key].symbol
+        ),
+      ];
+    })
   );
-
-  return toArrayOfCurrencies;
-};

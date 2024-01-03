@@ -16,7 +16,7 @@ export class GetCurrenciesUseCase {
    * Executes the use case.
    * @returns {Promise<Either<Error, Currency[]>>} The promise with either an error or an array of currencies.
    */
-  async execute(): Promise<Either<Error, Currency[]>> {
+  async execute(): Promise<Either<Error, Map<Currency["id"], Currency>>> {
     return await this._repository.getCurrencies();
   }
 }

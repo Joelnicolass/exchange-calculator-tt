@@ -6,6 +6,6 @@ import { Rate } from "../entities/rate/rate.entity";
  * Represents a repository for managing currencies.
  */
 export interface CurrencyRepository {
-  getCurrencies(): Promise<Either<Error, Currency[]>>;
+  getCurrencies(): Promise<Either<Error, Map<Currency["id"], Currency>>>;
   getRatesByBaseCurrency(baseCurrency: Currency): Promise<Either<Error, Rate>>;
 }

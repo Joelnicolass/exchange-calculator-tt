@@ -11,9 +11,9 @@ import { CurrencyAPIResponse, RatesAPIResponse } from "../../types/api.types";
 export class CurrencyVatComplyDataSourceImpl implements CurrencyDataSource {
   /**
    * Retrieves the list of currencies from the remote data source.
-   * @returns A promise that resolves to either an array of Currency objects or an Error.
+   * @returns A promise that resolves to either an Map of Currency objects or an Error.
    */
-  async getCurrencies(): Promise<Either<Error, Currency[]>> {
+  async getCurrencies(): Promise<Either<Error, Map<Currency["id"], Currency>>> {
     try {
       const URL_CURRENCIES = "/currencies";
 
