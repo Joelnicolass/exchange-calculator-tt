@@ -2,22 +2,17 @@ import { Currency } from "../../../domain/entities/currency/currency.entity";
 import { CurrencyAPIResponse } from "../../types/api.types";
 
 /**
- * Converts a CurrencyAPIResponse object into an array of Currency objects.
- * @param currencyApiResponse The CurrencyAPIResponse object to be converted.
- * @returns An array of Currency objects.
+ * Adapts the CurrencyAPIResponse to a Map of Currency objects.
+ *
+ * @param currencyApiResponse The response from the Currency API.
+ * @returns A Map containing Currency objects, where the key is the currency ID.
  */
 export const currencyApiResponseAdapter = (
   currencyApiResponse: CurrencyAPIResponse
 ): Map<Currency["id"], Currency> =>
   new Map(
-    Object.keys(currencyApiResponse).map((key) => {
-      return [
-        key,
-        new Currency(
-          key,
-          currencyApiResponse[key].name,
-          currencyApiResponse[key].symbol
-        ),
-      ];
-    })
+    Object.entries(currencyApiResponse).map(([key, { name, symbol }]) => [
+      key,
+      new Currency(key, name, symbol),
+    ])
   );

@@ -22,5 +22,7 @@ export const ratesApiResponseAdapter = (
     ])
   );
 
-  return new Rate(baseCurrency, rates);
+  const date = new Date(ratesApiResponse.date);
+
+  return new Rate(baseCurrency.id, rates, date);
 };
