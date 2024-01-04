@@ -15,9 +15,12 @@ export const ratesApiResponseAdapter = (
 ): Rate => {
   const ratesFromApi = ratesApiResponse.rates;
 
-  const rates = Object.keys(ratesFromApi).map((key) => ({
-    [key]: ratesFromApi[key],
-  }));
+  const rates = new Map<string, number>(
+    Object.entries(ratesFromApi).map(([currencyCode, rate]) => [
+      currencyCode,
+      rate,
+    ])
+  );
 
   return new Rate(baseCurrency, rates);
 };

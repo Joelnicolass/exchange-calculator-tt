@@ -5,14 +5,15 @@ import { Currency } from "../currency/currency.entity";
  */
 export class Rate {
   private _baseCurrency: Currency;
-  private _rates: Record<Currency["id"], number>[];
+  private _rates: Map<Currency["id"], number>;
 
   /**
-   * Creates a new Rate instance.
-   * @param baseCurrency The base currency.
-   * @param rates The exchange rates.
+   * Represents a Rate entity.
+   * @param baseCurrency The base currency for the rates.
+   * @param rates A map of currency IDs to their corresponding rates.
    */
-  constructor(baseCurrency: Currency, rates: Record<Currency["id"], number>[]) {
+
+  constructor(baseCurrency: Currency, rates: Map<Currency["id"], number>) {
     this._baseCurrency = baseCurrency;
     this._rates = rates;
   }
@@ -20,7 +21,7 @@ export class Rate {
     return this._baseCurrency;
   }
 
-  get rates(): Record<Currency["id"], number>[] {
+  get rates(): Map<Currency["id"], number> {
     return this._rates;
   }
 }

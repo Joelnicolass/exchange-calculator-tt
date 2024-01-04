@@ -15,6 +15,13 @@ export const getValuesFromMap = <T, K extends keyof T>(
   return values.map((value) => value[key]);
 };
 
+/**
+ * Converts a Map to an array of values.
+ *
+ * @template T - The type of values in the Map.
+ * @param {Map<string, T>} map - The Map to convert.
+ * @returns {T[]} - An array of values from the Map.
+ */
 export const mapToArr = <T>(map: Map<string, T>): T[] => {
   return Array.from(map.values());
 };
