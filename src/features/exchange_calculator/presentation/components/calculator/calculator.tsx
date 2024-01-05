@@ -7,6 +7,8 @@ import AppBaseRateConversion from "../../../../../common/presentation/components
 import LinksAndLastUpdated from "../links_and_last_updated/links_and_last_updated";
 import AppNotice from "../../../../../common/presentation/components/app_notice/app_notice";
 
+import styles from "./calculator.module.css";
+
 const Calculator = () => {
   const {
     amount,
@@ -28,21 +30,7 @@ const Calculator = () => {
   informational purposes only. You won’t receive this rate when sending money.`;
 
   return (
-    <article
-      style={{
-        position: "absolute",
-        top: "60%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        backgroundColor: "#fff",
-        borderRadius: "4px",
-        padding: "1rem",
-        width: "90%",
-        maxWidth: "1300px",
-        minHeight: "500px",
-        boxShadow: "0 5px 5px rgba(0, 0, 0, 0.1)",
-      }}
-    >
+    <article className={styles.calculator}>
       <FormExchange
         amount={amount}
         currencies={currencies}
@@ -59,16 +47,16 @@ const Calculator = () => {
       <div>
         <AppBaseRateConversion
           fromAmount="1"
-          fromSymbol={currencies.get(fromCurrency)?.symbol || ""}
+          fromSymbol={currencies.get(fromCurrency)?.id || ""}
           toAmount={rates?.get(toCurrency)?.toString() || ""}
-          toSymbol={currencies.get(toCurrency)?.symbol || ""}
+          toSymbol={currencies.get(toCurrency)?.id || ""}
         />
 
         <AppBaseRateConversion
           fromAmount="1"
-          fromSymbol={currencies.get(toCurrency)?.symbol || ""}
+          fromSymbol={currencies.get(toCurrency)?.id || ""}
           toAmount={calculateInverted()}
-          toSymbol={currencies.get(fromCurrency)?.symbol || ""}
+          toSymbol={currencies.get(fromCurrency)?.id || ""}
         />
       </div>
 

@@ -7,6 +7,8 @@ import { mapToArr } from "../../../../../common/utils";
 import AppIconButton from "../../../../../common/presentation/components/app_icon_button/app_icon_button";
 import DollarChange from "../../../../../common/presentation/components/icons/dollar_change";
 
+import styles from "./form_exchange.module.css";
+
 type Props = {
   currencies: Map<string, Currency>;
   fromCurrency: string;
@@ -41,16 +43,7 @@ const FormExchange = ({
   const options = mapToArr(currencies);
 
   return (
-    <form
-      style={{
-        display: "grid",
-        gridTemplateColumns: "auto auto 0fr auto",
-        gridTemplateRows: "auto auto",
-        gap: "1rem",
-        marginBottom: "1rem",
-        alignItems: "flex-end",
-      }}
-    >
+    <form className={styles.form}>
       <AppLabel text="Amount">
         <AppCurrencyInput
           prefix={prefix}
@@ -71,20 +64,18 @@ const FormExchange = ({
           renderOption={(options) =>
             options.map((currency) => (
               <option key={currency.id} value={currency.id}>
-                {currency.name}
+                {currency.id} - {currency.name}
               </option>
             ))
           }
         />
       </AppLabel>
 
-      <div>
-        <AppIconButton
-          icon={<DollarChange color="#1a8dff" />}
-          onClick={invertCurrencies}
-          type="button"
-        />
-      </div>
+      <AppIconButton
+        icon={<DollarChange color="#1a8dff" />}
+        onClick={invertCurrencies}
+        type="button"
+      />
 
       <AppLabel text="To">
         <AppSelect
@@ -95,7 +86,7 @@ const FormExchange = ({
           renderOption={(options) =>
             options.map((currency) => (
               <option key={currency.id} value={currency.id}>
-                {currency.name}
+                {currency.id} - {currency.name}
               </option>
             ))
           }

@@ -1,5 +1,7 @@
 import React from "react";
 
+import styles from "./app_base_rate_conversion.module.css";
+
 type Props = {
   fromSymbol: string | number;
   fromAmount: string | number;
@@ -23,7 +25,11 @@ const AppBaseRateConversion = ({
   toSymbol,
   toAmount,
 }: Props): JSX.Element => {
-  return <p>{`${fromSymbol} ${fromAmount} = ${toAmount} ${toSymbol}`}</p>;
+  return (
+    <p
+      className={styles.p}
+    >{`${fromAmount} ${fromSymbol} = ${toAmount} ${toSymbol}`}</p>
+  );
 };
 
 export default AppBaseRateConversion;

@@ -17,18 +17,6 @@ const AppLayout = ({ children }: Props) => {
         minHeight: "100vh",
       }}
     >
-      <div
-        style={{
-          position: "absolute",
-          top: "0",
-          left: "0",
-          width: "100%",
-          height: "40%",
-          backgroundColor: "#1a8dff",
-          zIndex: -1,
-        }}
-      />
-
       <nav
         style={{
           padding: "0 1rem",

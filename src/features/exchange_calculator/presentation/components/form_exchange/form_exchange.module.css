@@ -1,0 +1,15 @@
+.form {
+  display: grid;
+  grid-template-columns: auto auto 0fr auto;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+  .form {
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+  }
+}

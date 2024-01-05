@@ -1,0 +1,5 @@
+.p {
+  color: var(--color-text-gray);
+  font-weight: var(--text-r);
+  font-size: var(--text-size-sm);
+}

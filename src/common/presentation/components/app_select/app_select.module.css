@@ -27,6 +27,9 @@
   -moz-appearance: none;
   appearance: none;
   transition: border-color 0.2s ease-in-out;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .select:focus {
