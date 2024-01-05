@@ -25,3 +25,37 @@ export const getValuesFromMap = <T, K extends keyof T>(
 export const mapToArr = <T>(map: Map<string, T>): T[] => {
   return Array.from(map.values());
 };
+
+/**
+ * An object that maps month numbers to their corresponding abbreviations.
+ */
+export const months: Record<number, string> = {
+  0: "Jan",
+  1: "Feb",
+  2: "Mar",
+  3: "Apr",
+  4: "May",
+  5: "Jun",
+  6: "Jul",
+  7: "Aug",
+  8: "Sep",
+  9: "Oct",
+  10: "Nov",
+  11: "Dec",
+};
+
+/**
+ * Formats a date into a string representation.
+ * @param date - The date to format.
+ * @returns The formatted date string.
+ * @example formatDate(new Date("2021-01-01T00:00:00.000Z")) // "Jan 1, 2021, 00:00 UTC"
+ */
+export const formatDate = (date: Date): string => {
+  const month = months[date.getUTCMonth()];
+  const day = date.getUTCDate();
+  const year = date.getUTCFullYear();
+  const hour = date.getUTCHours().toString().padStart(2, "0");
+  const minutes = date.getUTCMinutes().toString().padStart(2, "0");
+
+  return `${month} ${day}, ${year}, ${hour}:${minutes} UTC`;
+};

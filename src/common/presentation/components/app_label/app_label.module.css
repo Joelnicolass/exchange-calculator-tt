@@ -1,0 +1,7 @@
+.label {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: var(--text-b);
+  font-size: var(--text-size-r);
+}

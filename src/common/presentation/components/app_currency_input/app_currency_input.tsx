@@ -1,5 +1,7 @@
 import CurrencyInput, { CurrencyInputProps } from "react-currency-input-field";
 
+import styles from "./app_currency_input.module.css";
+
 interface Props extends CurrencyInputProps {}
 /**
  * Component for currency input.
@@ -8,18 +10,7 @@ interface Props extends CurrencyInputProps {}
  * @returns The currency input component.
  */
 const AppCurrencyInput = ({ ...props }: Props) => {
-  return (
-    <CurrencyInput
-      className="
-            border
-            border-gray-300
-            rounded
-            px-4
-            py-2
-            "
-      {...props}
-    />
-  );
+  return <CurrencyInput className={styles.input} {...props} />;
 };
 
 export default AppCurrencyInput;

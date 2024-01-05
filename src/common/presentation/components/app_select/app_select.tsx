@@ -1,20 +1,21 @@
 import React from "react";
+
+import styles from "./app_select.module.css";
 import ArrowDown from "../icons/arrow_down";
 
-interface Props<OptionType>
-  extends React.SelectHTMLAttributes<HTMLSelectElement> {
+interface Props<OptionType> {
   renderOption: (options: OptionType[]) => JSX.Element[];
   options: OptionType[];
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 /**
- * Select component.
+ * Renders a custom select component.
  *
- * @component
- * @param {Object} options - The selection options.
- * @param {Function} renderOption - The option component renderer.
- * @param {...any} props - Other select component properties.
- * @returns {JSX.Element} The selection component.
+ * @template OptionType - The type of options in the select.
+ * @param {Props<OptionType>} props - The props for the select component.
+ * @returns {JSX.Element} - The rendered select component.
  */
 const AppSelect = <OptionType extends object>({
   options,
@@ -22,36 +23,12 @@ const AppSelect = <OptionType extends object>({
   ...props
 }: Props<OptionType>): JSX.Element => {
   return (
-    <div
-      className="
-      relative
-    "
-    >
-      <ArrowDown
-        className="
-          absolute
-          right-3
-          top-1/2
-          transform
-          -translate-y-1/2
-          pointer-events-none
-        "
-      />
+    <div className={styles.container}>
+      <ArrowDown className={styles.arrow} />
+
       <select
-        className="
-          border
-          border-gray-300
-          rounded
-          px-4
-          py-2
-          appearance-none
-          focus:outline-none
-          transition
-          duration-400
-          ease-in-out
-          font-semibold
-          min-w-64
-      "
+        className={styles.select}
+        aria-label={`Select ${props.value}`}
         {...props}
       >
         {renderOption(options)}

@@ -1,7 +1,6 @@
-interface Props extends React.SVGAttributes<SVGElement> {
-  size?: number;
-  color?: string;
-}
+import { IconProps, IconSize } from "../../../domain/types/index";
+interface Props extends React.SVGAttributes<SVGElement>, IconProps {}
+
 /**
  * ArrowDown component.
  *
@@ -10,7 +9,11 @@ interface Props extends React.SVGAttributes<SVGElement> {
  * @param props - Additional props for the SVG element.
  * @returns The ArrowDown component.
  */
-const ArrowDown = ({ size = 16, color = "#000", ...props }: Props) => {
+const ArrowDown = ({
+  size = IconSize.SMALL,
+  color = "#000",
+  ...props
+}: Props) => {
   return (
     <svg
       {...props}

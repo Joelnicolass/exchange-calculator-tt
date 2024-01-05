@@ -1,0 +1,35 @@
+.arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.container {
+  position: relative;
+}
+
+.select {
+  width: 100%;
+  min-width: 200px;
+  height: var(--input-h);
+  border-radius: var(--radius-sm);
+  border: var(--border);
+  font-size: var(--text-size-r);
+  font-weight: var(--text-b);
+  padding: 0 10px;
+  color: var(--color-text);
+  background-color: var(--color-bg-light);
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.select:focus {
+  border-color: var(--color-primary);
+}
