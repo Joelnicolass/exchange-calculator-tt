@@ -10,6 +10,10 @@ export const useCalculatorViewModel = () => {
   const INITIAL_STATE_FROM = "USD";
   const INITIAL_STATE_TO = "EUR";
   const INITIAL_STATE_AMOUNT = "1.00";
+  const ERROR_MESSAGE_CURRENCY =
+    "Oops, it seems that the currencies are not available at the moment. 😔";
+  const ERROR_MESSAGE_EXCHANGE_RATE =
+    "Oops, it seems that this exchange rate is not available at the moment. 😔";
 
   const { handler: handleApiResponse, isLoading } = useHandleApiResponse();
 
@@ -26,7 +30,7 @@ export const useCalculatorViewModel = () => {
     await handleApiResponse(
       () => currencyUseCases.getCurrencies.execute(),
       (data) => setCurrencies(data),
-      (error) => showToast(ToastType.ERROR, error.message)
+      () => showToast(ToastType.ERROR, ERROR_MESSAGE_CURRENCY)
     );
 
   const getRatesByBaseCurrency = async (baseCurrency: Currency) => {
@@ -36,7 +40,7 @@ export const useCalculatorViewModel = () => {
         setRates(data.rates);
         setLastUpdated(data.date);
       },
-      (error) => showToast(ToastType.ERROR, error.message)
+      () => showToast(ToastType.ERROR, ERROR_MESSAGE_EXCHANGE_RATE)
     );
   };
 
@@ -51,24 +55,12 @@ export const useCalculatorViewModel = () => {
   }, []);
 
   // TODO! Mover a un usecase
-  const calculate = () => {
-    if (!rates) return;
-    const rate = rates.get(toCurrency);
-
-    if (!rate) return;
-    if (isNaN(Number(amount))) return;
-
-    return Number(amount) * rate;
-  };
-
-  // TODO! Mover a un usecase
   const calculateInverted = () => {
-    if (amount && rates) return Number(amount) / rates.get(toCurrency)!;
+    if (amount && rates) return 1 / rates.get(toCurrency)!;
 
     return "";
   };
 
-  // TODO! crear un solo handler
   const handleFromCurrencyChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -91,10 +83,6 @@ export const useCalculatorViewModel = () => {
     getRatesByBaseCurrency(currencies.get(toCurrency)!);
   };
 
-  const fromText = `${amount} ${currencies.get(fromCurrency)?.name} =`;
-
-  const toText = `${calculate()} ${currencies.get(toCurrency)?.name}`;
-
   return {
     currencies,
     rates,
@@ -103,12 +91,9 @@ export const useCalculatorViewModel = () => {
     fromCurrency,
     toCurrency,
     amount,
-    fromText,
-    toText,
     handleFromCurrencyChange,
     handleToCurrencyChange,
     setAmount,
-    calculate,
     calculateInverted,
     invertCurrencies,
   };

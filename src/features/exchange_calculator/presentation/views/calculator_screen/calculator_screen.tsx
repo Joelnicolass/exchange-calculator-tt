@@ -41,7 +41,13 @@ const CalculatorScreen = () => {
             marginBottom: "3rem",
           }}
         ></div>
-        <Calculator />
+        <Calculator>
+          <section>
+            <Calculator.FormExchange />
+            <Calculator.ResultExchange />
+          </section>
+          <Calculator.ConversionAndNotice />
+        </Calculator>
       </div>
     </>
   );

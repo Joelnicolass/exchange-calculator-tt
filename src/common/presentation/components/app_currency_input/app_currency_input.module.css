@@ -1,4 +1,11 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 .input {
+  padding: 0 10px;
   width: 100%;
   height: var(--input-h);
   border-radius: var(--radius-sm);
@@ -16,4 +23,12 @@
 
 .input:focus {
   border-color: var(--color-primary);
+}
+
+.error {
+  border-color: red;
+  position: absolute;
+  bottom: -18px;
+  color: red;
+  font-size: 12px;
 }

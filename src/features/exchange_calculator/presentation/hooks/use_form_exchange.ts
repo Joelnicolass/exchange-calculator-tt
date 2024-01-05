@@ -1,26 +1,32 @@
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { mapToArr } from "../../../../common/utils";
-import { Currency } from "../../domain/entities/currency/currency.entity";
+import { isNegative, mapToArr } from "../../../../common/utils";
+import { useCalculatorContext } from "./use_calculator_context";
 
-export const useFormExchange = ({
-  amount,
-  fromCurrency,
-  toCurrency,
-  currencies,
-  setAmount,
-}: {
-  amount: number | undefined | string;
-  fromCurrency: string;
-  toCurrency: string;
-  currencies: Map<string, Currency>;
-  setAmount: (amount: string) => void;
-}) => {
+export const useFormExchange = () => {
+  const {
+    amount,
+    fromCurrency,
+    toCurrency,
+    currencies,
+    setAmount,
+    handleFromCurrencyChange,
+    handleToCurrencyChange,
+    invertCurrencies,
+  } = useCalculatorContext();
+
+  enum FormExchangeFields {
+    amount = "amount",
+    fromCurrency = "fromCurrency",
+    toCurrency = "toCurrency",
+  }
+
+  const ERROR_MIN_AMOUNT = "Amount must be greater than 0.00";
+  const ERROR_REQUIRED = "Amount is required";
+
+  // TODO! mover a logica de negocio en domain
   const validationSchema = yup.object({
-    amount: yup
-      .number()
-      .required("Amount is required")
-      .min(0.01, "Amount must be greater than 0.00"),
+    amount: yup.number().required(ERROR_REQUIRED).min(0.01, ERROR_MIN_AMOUNT),
   });
 
   const form = useFormik({
@@ -35,7 +41,7 @@ export const useFormExchange = ({
 
   const prefix = `${
     currencies.get(fromCurrency)
-      ? `  ${currencies.get(fromCurrency)?.symbol}`
+      ? `${currencies.get(fromCurrency)?.symbol}`
       : "$"
   } `;
 
@@ -43,15 +49,30 @@ export const useFormExchange = ({
 
   const options = mapToArr(currencies);
 
-  const isNegative = (value: string | number) => {
-    return Number(value) < 0;
-  };
-
   const handleValueChange = (value: string | undefined) => {
-    form.setFieldValue("amount", value);
+    form.setFieldValue(FormExchangeFields.amount, value);
     if (isNegative(value || "")) return;
     setAmount(value || "");
   };
 
-  return { form, prefix, placeholder, options, handleValueChange };
+  const handleReset = () => {
+    form.resetForm();
+    setAmount("");
+  };
+
+  return {
+    form,
+    amount,
+    prefix,
+    placeholder,
+    options,
+    toCurrency,
+    fromCurrency,
+    FormExchangeFields,
+    handleReset,
+    handleValueChange,
+    handleFromCurrencyChange,
+    handleToCurrencyChange,
+    invertCurrencies,
+  };
 };

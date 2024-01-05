@@ -2,43 +2,27 @@ import React from "react";
 import AppLabel from "../../../../../common/presentation/components/app_label/app_label";
 import AppCurrencyInput from "../../../../../common/presentation/components/app_currency_input/app_currency_input";
 import AppSelect from "../../../../../common/presentation/components/app_select/app_select";
-import { Currency } from "../../../domain/entities/currency/currency.entity";
 import AppIconButton from "../../../../../common/presentation/components/app_icon_button/app_icon_button";
 import DollarChange from "../../../../../common/presentation/components/icons/dollar_change";
 import styles from "./form_exchange.module.css";
 import { useFormExchange } from "../../hooks/use_form_exchange";
 
-type Props = {
-  currencies: Map<string, Currency>;
-  fromCurrency: string;
-  toCurrency: string;
-  amount: string;
-  setAmount: (value: string) => void;
-  handleFromCurrencyChange: (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => void;
-  handleToCurrencyChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  invertCurrencies: () => void;
-};
-
-const FormExchange = ({
-  currencies,
-  fromCurrency,
-  toCurrency,
-  amount,
-  setAmount,
-  handleFromCurrencyChange,
-  handleToCurrencyChange,
-  invertCurrencies,
-}: Props) => {
-  const { form, options, placeholder, prefix, handleValueChange } =
-    useFormExchange({
-      currencies,
-      fromCurrency,
-      toCurrency,
-      amount,
-      setAmount,
-    });
+const FormExchange = () => {
+  const {
+    form,
+    amount,
+    options,
+    placeholder,
+    prefix,
+    toCurrency,
+    fromCurrency,
+    FormExchangeFields,
+    handleReset,
+    handleValueChange,
+    handleFromCurrencyChange,
+    handleToCurrencyChange,
+    invertCurrencies,
+  } = useFormExchange();
 
   return (
     <form
@@ -49,14 +33,16 @@ const FormExchange = ({
     >
       <AppLabel text="Amount">
         <AppCurrencyInput
+          name={FormExchangeFields.amount}
           prefix={prefix}
           placeholder={placeholder}
           defaultValue={amount}
           decimalsLimit={2}
-          name="amount"
           onValueChange={handleValueChange}
           onBlur={form.handleBlur}
           error={form.errors.amount}
+          onClick={handleReset}
+          value={amount}
         />
       </AppLabel>
 

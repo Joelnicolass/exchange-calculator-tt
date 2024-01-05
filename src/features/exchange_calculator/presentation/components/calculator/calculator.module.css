@@ -12,16 +12,3 @@
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
   gap: 1rem;
 }
-
-.footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-@media (max-width: 768px) {
-  .footer {
-    flex-direction: column;
-  }
-}

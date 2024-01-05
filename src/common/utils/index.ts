@@ -71,9 +71,11 @@ export const formatDate = (date: Date): string => {
  * @private
  */
 const _toastMap = {
-  [ToastType.SUCCESS]: (message: string) => toast.success(message),
-  [ToastType.ERROR]: (message: string) => toast.error(message),
-  [ToastType.WARNING]: (message: string) => toast(message),
+  [ToastType.SUCCESS]: (message: string) =>
+    toast.success(message, { duration: 5000 }),
+  [ToastType.ERROR]: (message: string) =>
+    toast.error(message, { duration: 5000 }),
+  [ToastType.WARNING]: (message: string) => toast(message, { duration: 5000 }),
 };
 
 /**
@@ -84,3 +86,10 @@ const _toastMap = {
 export const showToast = (type: ToastType, message: string) => {
   _toastMap[type](message);
 };
+
+/**
+ * Checks if a value is negative.
+ * @param value - The value to check.
+ * @returns True if the value is negative, false otherwise.
+ */
+export const isNegative = (value: string | number) => Number(value) < 0;
