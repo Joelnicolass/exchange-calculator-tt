@@ -5,6 +5,12 @@ import { useHandleApiResponse } from "../../../../common/presentation/hooks/use_
 import { showToast } from "../../../../common/utils";
 import { ToastType } from "../../../../common/domain/types";
 
+/**
+ * Hook that provides a view model for the exchange calculator.
+ * The view model contains state variables and functions to handle currency conversion.
+ *
+ * @returns The calculator view model object.
+ */
 export const useCalculatorViewModel = () => {
   const INITIAL_STATE_CURRENCY = new Map<string, Currency>();
   const INITIAL_STATE_FROM = "USD";
@@ -54,13 +60,6 @@ export const useCalculatorViewModel = () => {
     init();
   }, []);
 
-  // TODO! Mover a un usecase
-  const calculateInverted = () => {
-    if (amount && rates) return 1 / rates.get(toCurrency)!;
-
-    return "";
-  };
-
   const handleFromCurrencyChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -94,7 +93,6 @@ export const useCalculatorViewModel = () => {
     handleFromCurrencyChange,
     handleToCurrencyChange,
     setAmount,
-    calculateInverted,
     invertCurrencies,
   };
 };

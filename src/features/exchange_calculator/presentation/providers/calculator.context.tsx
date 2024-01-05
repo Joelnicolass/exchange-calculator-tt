@@ -8,7 +8,6 @@ export interface CalculatorContextProps {
   toCurrency: string;
   rates: Map<string, number> | undefined;
   lastUpdated: Date | undefined;
-  calculateInverted: () => string | number;
   setAmount: (amount: string) => void;
   invertCurrencies: () => void;
   handleFromCurrencyChange: (

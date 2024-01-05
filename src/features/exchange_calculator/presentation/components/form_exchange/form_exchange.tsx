@@ -7,6 +7,10 @@ import DollarChange from "../../../../../common/presentation/components/icons/do
 import styles from "./form_exchange.module.css";
 import { useFormExchange } from "../../hooks/use_form_exchange";
 
+/**
+ * This component represents a form for exchanging currencies.
+ * It allows users to input the amount to be exchanged and select the currencies to convert from and to.
+ */
 const FormExchange = () => {
   const {
     form,

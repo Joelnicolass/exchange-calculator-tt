@@ -1,5 +1,9 @@
 import { useCalculatorContext } from "./use_calculator_context";
 
+/**
+ * Custom hook for calculating exchange rates and formatting amounts.
+ * @returns An object containing formatted values.
+ */
 export const useResultExchange = () => {
   const { amount, fromCurrency, currencies, toCurrency, rates } =
     useCalculatorContext();
@@ -15,12 +19,41 @@ export const useResultExchange = () => {
     return Number(amount) * rate;
   };
 
-  const fromText = `${amount} ${currencies.get(fromCurrency)?.name} =`;
+  // TODO! Mover a un usecase
+  const calculateInverted = () => {
+    if (amount && rates) return 1 / rates.get(toCurrency)!;
 
-  const toText = `${calculate()} ${currencies.get(toCurrency)?.name}`;
+    return "";
+  };
+
+  const fromAmountFormatted = `${amount} ${
+    currencies.get(fromCurrency)?.name
+  } =`;
+
+  const toAmountFormatted = `${calculate()} ${
+    currencies.get(toCurrency)?.name
+  }`;
+
+  const baseRateConversion = {
+    fromAmount: "1",
+    fromSymbol: currencies.get(fromCurrency)?.id || "",
+    toAmount: rates?.get(toCurrency)?.toString() || "",
+    toSymbol: currencies.get(toCurrency)?.id || "",
+  };
+
+  const invertedBaseRateConversion = {
+    fromAmount: "1",
+    fromSymbol: currencies.get(toCurrency)?.id || "",
+    toAmount: calculateInverted(),
+    toSymbol: currencies.get(fromCurrency)?.id || "",
+  };
 
   return {
-    fromText,
-    toText,
+    calculate,
+    calculateInverted,
+    fromAmountFormatted,
+    toAmountFormatted,
+    baseRateConversion,
+    invertedBaseRateConversion,
   };
 };

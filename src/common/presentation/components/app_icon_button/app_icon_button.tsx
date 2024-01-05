@@ -18,7 +18,7 @@ interface Props
  * @param {React.ButtonHTMLAttributes<HTMLButtonElement>} props - Additional props to be passed to the button element.
  * @returns {JSX.Element} The rendered button component.
  */
-const AppIconButton = ({ icon, ...props }: Props) => {
+const AppIconButton = ({ icon, ...props }: Props): JSX.Element => {
   return (
     <button className={styles.button} {...props}>
       {icon}

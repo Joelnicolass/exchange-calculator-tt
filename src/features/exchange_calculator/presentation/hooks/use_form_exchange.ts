@@ -3,6 +3,11 @@ import { useFormik } from "formik";
 import { isNegative, mapToArr } from "../../../../common/utils";
 import { useCalculatorContext } from "./use_calculator_context";
 
+/**
+ * Custom hook for managing the form state.
+ *
+ * @returns An object containing the form state and various handlers and values related to the exchange calculator.
+ */
 export const useFormExchange = () => {
   const {
     amount,
@@ -51,6 +56,7 @@ export const useFormExchange = () => {
 
   const handleValueChange = (value: string | undefined) => {
     form.setFieldValue(FormExchangeFields.amount, value);
+
     if (isNegative(value || "")) return;
     setAmount(value || "");
   };

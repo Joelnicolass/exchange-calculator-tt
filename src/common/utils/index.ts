@@ -92,4 +92,12 @@ export const showToast = (type: ToastType, message: string) => {
  * @param value - The value to check.
  * @returns True if the value is negative, false otherwise.
  */
-export const isNegative = (value: string | number) => Number(value) < 0;
+export const isNegative = (value: string | number): boolean => {
+  if (typeof value === "string") {
+    value = value.trim();
+    if (value === "" || isNaN(Number(value))) {
+      return false;
+    }
+  }
+  return Number(value) < 0;
+};

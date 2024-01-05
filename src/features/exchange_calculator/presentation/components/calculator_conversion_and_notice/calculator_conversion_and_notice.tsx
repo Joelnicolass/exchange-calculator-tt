@@ -1,39 +1,37 @@
 import React from "react";
 import AppBaseRateConversion from "../../../../../common/presentation/components/app_base_rate_conversion/app_base_rate_conversion";
 import AppNotice from "../../../../../common/presentation/components/app_notice/app_notice";
-import { useCalculatorContext } from "../../hooks/use_calculator_context";
 import LinksAndLastUpdated from "../links_and_last_updated/links_and_last_updated";
 
 import styles from "./calculator_conversion_and_notice.module.css";
+import { useNoticeAndLastUpdated } from "../../hooks/use_notice_and_last_updated";
 
+/**
+ * Container component for displaying the conversion rate and notice.
+ */
 const ConversionAndNoticeContainer = () => {
   const {
-    fromCurrency,
-    toCurrency,
-    currencies,
-    rates,
+    NOTICE,
+    baseRateConversion,
+    invertedBaseRateConversion,
     lastUpdated,
-    calculateInverted,
-  } = useCalculatorContext();
-
-  const NOTICE = `We use the mid-market rate for our Converter. This is for 
-      informational purposes only. You won’t receive this rate when sending money.`;
+  } = useNoticeAndLastUpdated();
 
   return (
     <section className={styles.footer}>
       <div>
         <AppBaseRateConversion
-          fromAmount="1"
-          fromSymbol={currencies.get(fromCurrency)?.id || ""}
-          toAmount={rates?.get(toCurrency)?.toString() || ""}
-          toSymbol={currencies.get(toCurrency)?.id || ""}
+          fromAmount={baseRateConversion.fromAmount}
+          fromSymbol={baseRateConversion.fromSymbol}
+          toAmount={baseRateConversion.toAmount}
+          toSymbol={baseRateConversion.toSymbol}
         />
 
         <AppBaseRateConversion
-          fromAmount="1"
-          fromSymbol={currencies.get(toCurrency)?.id || ""}
-          toAmount={calculateInverted()}
-          toSymbol={currencies.get(fromCurrency)?.id || ""}
+          fromAmount={invertedBaseRateConversion.fromAmount}
+          fromSymbol={invertedBaseRateConversion.fromSymbol}
+          toAmount={invertedBaseRateConversion.toAmount}
+          toSymbol={invertedBaseRateConversion.toSymbol}
         />
       </div>
 
