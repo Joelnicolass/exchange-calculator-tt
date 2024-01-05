@@ -10,7 +10,16 @@ interface Props
   children: React.ReactNode | React.ReactNode[];
 }
 
-const AppNotice = ({ children, ...props }: Props) => {
+/**
+ * Component that represents a important notice in the application.
+ *
+ * @component
+ * @param {object} props - The component properties.
+ * @param {ReactNode} props.children - The child elements of the component.
+ * @returns {JSX.Element} The notice element.
+ */
+
+const AppNotice = ({ children, ...props }: Props): JSX.Element => {
   return (
     <section className={styles.notice} {...props}>
       {children}

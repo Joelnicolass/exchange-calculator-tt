@@ -30,12 +30,16 @@ const Calculator = () => {
   return (
     <article
       style={{
+        position: "absolute",
+        top: "60%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
         backgroundColor: "#fff",
         borderRadius: "4px",
         padding: "1rem",
         width: "90%",
         maxWidth: "1300px",
-        minHeight: "600px",
+        minHeight: "500px",
         boxShadow: "0 5px 5px rgba(0, 0, 0, 0.1)",
       }}
     >

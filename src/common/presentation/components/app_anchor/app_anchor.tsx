@@ -7,7 +7,19 @@ interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   blank?: boolean;
 }
 
-const AppAnchor = ({ blank = false, children, ...props }: Props) => {
+/**
+ * Anchor component for the app.
+ *
+ * @param {boolean} blank - Whether to open the link in a new tab.
+ * @param {ReactNode} children - The content of the anchor.
+ * @param {React.HTMLProps<HTMLAnchorElement>} props - Additional props for the anchor element.
+ * @returns {React.ReactElement} The rendered anchor component.
+ */
+const AppAnchor = ({
+  blank = false,
+  children,
+  ...props
+}: Props): React.ReactElement => {
   return (
     <a className={styles.anchor} target={blank ? "_blank" : ""} {...props}>
       {children}

@@ -13,7 +13,7 @@ const AppLayout = ({ children }: Props) => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         minHeight: "100vh",
       }}
     >
@@ -31,26 +31,27 @@ const AppLayout = ({ children }: Props) => {
 
       <nav
         style={{
+          padding: "0 1rem",
           height: "60px",
           backgroundColor: "#0e1342",
           width: "100%",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "flex-start",
           position: "fixed",
           top: "0",
-        }}
-      ></nav>
-
-      <h1
-        style={{
-          marginTop: "4rem",
-          color: "#fff",
-          fontSize: "32px",
+          zIndex: 1,
         }}
       >
-        100 EUR to USD - Convert Euros to US Dollars
-      </h1>
+        <h1
+          style={{
+            color: "#fff",
+            fontSize: "18px",
+          }}
+        >
+          Currency exchange
+        </h1>
+      </nav>
 
       {children}
     </main>

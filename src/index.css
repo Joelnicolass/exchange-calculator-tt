@@ -26,6 +26,7 @@
   --button-h: 42px;
   --button-w: 42px;
   --media-r: 768px;
+  --height-nav: 60px;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
