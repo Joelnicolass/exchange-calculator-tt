@@ -38,6 +38,8 @@ const FormExchange = ({
 
   const placeholder = `${currencies.get(fromCurrency)?.symbol} 0.00`;
 
+  const options = mapToArr(currencies);
+
   return (
     <form
       style={{
@@ -65,7 +67,7 @@ const FormExchange = ({
           key={fromCurrency}
           value={fromCurrency}
           onChange={handleFromCurrencyChange}
-          options={mapToArr(currencies)}
+          options={options}
           renderOption={(options) =>
             options.map((currency) => (
               <option key={currency.id} value={currency.id}>
@@ -89,7 +91,7 @@ const FormExchange = ({
           key={toCurrency}
           value={toCurrency}
           onChange={handleToCurrencyChange}
-          options={mapToArr(currencies)}
+          options={options}
           renderOption={(options) =>
             options.map((currency) => (
               <option key={currency.id} value={currency.id}>

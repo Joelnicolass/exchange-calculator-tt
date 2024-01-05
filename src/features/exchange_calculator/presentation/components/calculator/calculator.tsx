@@ -1,11 +1,12 @@
 import React from "react";
-import FormExchange from "../../components/form_exchange/form_exchange";
-import { useCalculatorViewModel } from "../../view_model/calculator.view_model";
-import { formatDate } from "../../../../../common/utils";
-import Result from "../../components/result/result";
+import FormExchange from "../form_exchange/form_exchange";
+import AppResultExchange from "../../../../../common/presentation/components/app_result_exchange/app_result_exchange";
 import AppAnchor from "../../../../../common/presentation/components/app_anchor/app_anchor";
+import { formatDate } from "../../../../../common/utils";
+import { useCalculatorViewModel } from "../../view_model/calculator.view_model";
+import AppBaseRateConversion from "../../../../../common/presentation/components/app_base_rate_conversion/app_base_rate_conversion";
 
-const CalculatorScreen = () => {
+const Calculator = () => {
   const {
     amount,
     currencies,
@@ -13,11 +14,13 @@ const CalculatorScreen = () => {
     toCurrency,
     rates,
     lastUpdated,
+    fromText,
+    toText,
+    calculateInverted,
     setAmount,
     invertCurrencies,
     handleFromCurrencyChange,
     handleToCurrencyChange,
-    calculate,
   } = useCalculatorViewModel();
 
   return (
@@ -43,25 +46,22 @@ const CalculatorScreen = () => {
         invertCurrencies={invertCurrencies}
       />
 
-      <Result
-        amount={amount}
-        currencies={currencies}
-        fromCurrency={fromCurrency}
-        toCurrency={toCurrency}
-        calculate={calculate}
-      />
+      <AppResultExchange fromText={fromText} toText={toText} />
 
       <div>
-        <p>
-          1 {currencies.get(fromCurrency)?.symbol} ={" "}
-          {currencies.get(toCurrency)?.symbol} {rates?.get(toCurrency)}{" "}
-        </p>
+        <AppBaseRateConversion
+          fromAmount="1"
+          fromSymbol={currencies.get(fromCurrency)?.symbol || ""}
+          toAmount={rates?.get(toCurrency)?.toString() || ""}
+          toSymbol={currencies.get(toCurrency)?.symbol || ""}
+        />
 
-        <p>
-          1 {currencies.get(toCurrency)?.symbol} ={" "}
-          {currencies.get(fromCurrency)?.symbol}{" "}
-          {rates?.get(toCurrency) ? 1 / rates.get(toCurrency)! : 0}{" "}
-        </p>
+        <AppBaseRateConversion
+          fromAmount="1"
+          fromSymbol={currencies.get(toCurrency)?.symbol || ""}
+          toAmount={calculateInverted()}
+          toSymbol={currencies.get(fromCurrency)?.symbol || ""}
+        />
       </div>
 
       <section
@@ -107,4 +107,4 @@ const CalculatorScreen = () => {
   );
 };
 
-export default CalculatorScreen;
+export default Calculator;

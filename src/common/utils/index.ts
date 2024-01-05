@@ -1,3 +1,6 @@
+import toast from "react-hot-toast";
+import { ToastType } from "../domain/types";
+
 /**
  * Retrieves an array of values from a map based on a specified key.
  *
@@ -58,4 +61,26 @@ export const formatDate = (date: Date): string => {
   const minutes = date.getUTCMinutes().toString().padStart(2, "0");
 
   return `${month} ${day}, ${year}, ${hour}:${minutes} UTC`;
+};
+
+// TODO: Create a service for toast notifications.
+
+/**
+ * Map of toast functions.
+ *
+ * @private
+ */
+const _toastMap = {
+  [ToastType.SUCCESS]: (message: string) => toast.success(message),
+  [ToastType.ERROR]: (message: string) => toast.error(message),
+  [ToastType.WARNING]: (message: string) => toast(message),
+};
+
+/**
+ * Shows a toast message of the specified type with the given message.
+ * @param type - The type of the toast message.
+ * @param message - The message to be displayed in the toast.
+ */
+export const showToast = (type: ToastType, message: string) => {
+  _toastMap[type](message);
 };
