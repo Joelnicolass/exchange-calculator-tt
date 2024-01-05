@@ -1,10 +1,11 @@
 import React from "react";
+
 import FormExchange from "../form_exchange/form_exchange";
 import AppResultExchange from "../../../../../common/presentation/components/app_result_exchange/app_result_exchange";
-import AppAnchor from "../../../../../common/presentation/components/app_anchor/app_anchor";
-import { formatDate } from "../../../../../common/utils";
 import { useCalculatorViewModel } from "../../view_model/calculator.view_model";
 import AppBaseRateConversion from "../../../../../common/presentation/components/app_base_rate_conversion/app_base_rate_conversion";
+import LinksAndLastUpdated from "../links_and_last_updated/links_and_last_updated";
+import AppNotice from "../../../../../common/presentation/components/app_notice/app_notice";
 
 const Calculator = () => {
   const {
@@ -22,6 +23,9 @@ const Calculator = () => {
     handleFromCurrencyChange,
     handleToCurrencyChange,
   } = useCalculatorViewModel();
+
+  const NOTICE = `We use the mid-market rate for our Converter. This is for 
+  informational purposes only. You won’t receive this rate when sending money.`;
 
   return (
     <article
@@ -64,45 +68,10 @@ const Calculator = () => {
         />
       </div>
 
-      <section
-        style={{
-          width: "100%",
-          maxWidth: "500px",
-          backgroundColor: "#e8f3ff",
-          borderRadius: "4px",
-          padding: "1rem",
-          fontSize: "14px",
-          fontWeight: "400",
-        }}
-      >
-        <p>
-          We use the mid-market rate for our Converter. This is for
-          informational purposes only. You won’t receive this rate when sending
-          money.
-        </p>
-      </section>
-      <section
-        style={{
-          width: "100%",
-          maxWidth: "500px",
-          borderRadius: "4px",
-          padding: "1rem",
-          fontSize: "12px",
-          fontWeight: "300",
-        }}
-      >
-        <p>
-          <AppAnchor blank href="https://www.xe.com/currency/eur-euro/">
-            Euro
-          </AppAnchor>{" "}
-          to{" "}
-          <AppAnchor blank href="https://www.xe.com/currency/usd-us-dollar/">
-            US Dollar
-          </AppAnchor>{" "}
-          conversion - Last updated:{" "}
-          {lastUpdated ? formatDate(lastUpdated) : "No data available"}
-        </p>
-      </section>
+      <AppNotice>
+        <p>{NOTICE}</p>
+      </AppNotice>
+      <LinksAndLastUpdated lastUpdated={lastUpdated} />
     </article>
   );
 };

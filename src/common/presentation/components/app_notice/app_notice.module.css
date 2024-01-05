@@ -1,0 +1,18 @@
+.notice {
+  background-color: var(--color-primary-100);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-size-sm);
+  font-weight: var(--text-r);
+  display: flex;
+  width: 100%;
+  max-width: 500px;
+  padding: 1rem;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .notice {
+    display: none;
+  }
+}

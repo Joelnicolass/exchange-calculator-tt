@@ -44,7 +44,7 @@ const FormExchange = ({
     <form
       style={{
         display: "grid",
-        gridTemplateColumns: "auto auto 0.1fr auto",
+        gridTemplateColumns: "auto auto 0fr auto",
         gridTemplateRows: "auto auto",
         gap: "1rem",
         marginBottom: "1rem",
