@@ -31,39 +31,45 @@ const Calculator = () => {
 
   return (
     <article className={styles.calculator}>
-      <FormExchange
-        amount={amount}
-        currencies={currencies}
-        fromCurrency={fromCurrency}
-        toCurrency={toCurrency}
-        setAmount={setAmount}
-        handleFromCurrencyChange={handleFromCurrencyChange}
-        handleToCurrencyChange={handleToCurrencyChange}
-        invertCurrencies={invertCurrencies}
-      />
-
-      <AppResultExchange fromText={fromText} toText={toText} />
-
-      <div>
-        <AppBaseRateConversion
-          fromAmount="1"
-          fromSymbol={currencies.get(fromCurrency)?.id || ""}
-          toAmount={rates?.get(toCurrency)?.toString() || ""}
-          toSymbol={currencies.get(toCurrency)?.id || ""}
+      <section>
+        <FormExchange
+          amount={amount}
+          currencies={currencies}
+          fromCurrency={fromCurrency}
+          toCurrency={toCurrency}
+          setAmount={setAmount}
+          handleFromCurrencyChange={handleFromCurrencyChange}
+          handleToCurrencyChange={handleToCurrencyChange}
+          invertCurrencies={invertCurrencies}
         />
 
-        <AppBaseRateConversion
-          fromAmount="1"
-          fromSymbol={currencies.get(toCurrency)?.id || ""}
-          toAmount={calculateInverted()}
-          toSymbol={currencies.get(fromCurrency)?.id || ""}
-        />
-      </div>
+        <AppResultExchange fromText={fromText} toText={toText} />
+      </section>
 
-      <AppNotice>
-        <p>{NOTICE}</p>
-      </AppNotice>
-      <LinksAndLastUpdated lastUpdated={lastUpdated} />
+      <section className={styles.footer}>
+        <div>
+          <AppBaseRateConversion
+            fromAmount="1"
+            fromSymbol={currencies.get(fromCurrency)?.id || ""}
+            toAmount={rates?.get(toCurrency)?.toString() || ""}
+            toSymbol={currencies.get(toCurrency)?.id || ""}
+          />
+
+          <AppBaseRateConversion
+            fromAmount="1"
+            fromSymbol={currencies.get(toCurrency)?.id || ""}
+            toAmount={calculateInverted()}
+            toSymbol={currencies.get(fromCurrency)?.id || ""}
+          />
+        </div>
+
+        <section>
+          <AppNotice>
+            <p>{NOTICE}</p>
+          </AppNotice>
+          <LinksAndLastUpdated lastUpdated={lastUpdated} />
+        </section>
+      </section>
     </article>
   );
 };

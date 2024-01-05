@@ -3,11 +3,10 @@ import AppLabel from "../../../../../common/presentation/components/app_label/ap
 import AppCurrencyInput from "../../../../../common/presentation/components/app_currency_input/app_currency_input";
 import AppSelect from "../../../../../common/presentation/components/app_select/app_select";
 import { Currency } from "../../../domain/entities/currency/currency.entity";
-import { mapToArr } from "../../../../../common/utils";
 import AppIconButton from "../../../../../common/presentation/components/app_icon_button/app_icon_button";
 import DollarChange from "../../../../../common/presentation/components/icons/dollar_change";
-
 import styles from "./form_exchange.module.css";
+import { useFormExchange } from "../../hooks/use_form_exchange";
 
 type Props = {
   currencies: Map<string, Currency>;
@@ -32,26 +31,32 @@ const FormExchange = ({
   handleToCurrencyChange,
   invertCurrencies,
 }: Props) => {
-  const prefix = `${
-    currencies.get(fromCurrency)
-      ? `  ${currencies.get(fromCurrency)?.symbol}`
-      : "$"
-  } `;
-
-  const placeholder = `${currencies.get(fromCurrency)?.symbol} 0.00`;
-
-  const options = mapToArr(currencies);
+  const { form, options, placeholder, prefix, handleValueChange } =
+    useFormExchange({
+      currencies,
+      fromCurrency,
+      toCurrency,
+      amount,
+      setAmount,
+    });
 
   return (
-    <form className={styles.form}>
+    <form
+      className={styles.form}
+      onSubmit={(event) => {
+        event.preventDefault();
+      }}
+    >
       <AppLabel text="Amount">
         <AppCurrencyInput
           prefix={prefix}
           placeholder={placeholder}
           defaultValue={amount}
           decimalsLimit={2}
-          value={amount}
-          onValueChange={(value) => setAmount(value!)}
+          name="amount"
+          onValueChange={handleValueChange}
+          onBlur={form.handleBlur}
+          error={form.errors.amount}
         />
       </AppLabel>
 

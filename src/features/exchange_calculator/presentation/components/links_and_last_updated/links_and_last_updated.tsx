@@ -2,22 +2,20 @@ import React from "react";
 import AppAnchor from "../../../../../common/presentation/components/app_anchor/app_anchor";
 import { formatDate } from "../../../../../common/utils";
 
+import styles from "./links_and_last_updated.module.css";
+
 type Props = {
   lastUpdated: Date | undefined;
 };
 
+/**
+ * Component that displays links and the last update date.
+ *
+ * @param lastUpdated The date of the last update.
+ */
 const LinksAndLastUpdated = ({ lastUpdated }: Props) => {
   return (
-    <section
-      style={{
-        width: "100%",
-        maxWidth: "500px",
-        borderRadius: "4px",
-        padding: "1rem",
-        fontSize: "12px",
-        fontWeight: "300",
-      }}
-    >
+    <section className={styles.link_and_last_updated}>
       <p>
         <AppAnchor blank href="https://www.xe.com/currency/eur-euro/">
           Euro

@@ -1,0 +1,15 @@
+.link_and_last_updated {
+  width: 100%;
+  max-width: 500px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 300;
+  display: flex;
+  justify-content: end;
+}
+
+@media (max-width: 768px) {
+  .link_and_last_updated {
+    justify-content: start;
+  }
+}
