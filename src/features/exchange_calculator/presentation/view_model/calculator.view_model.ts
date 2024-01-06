@@ -12,9 +12,10 @@ import { useResultExchange } from "../hooks/use_result_exchange";
 export const useCalculatorViewModel = () => {
   const {
     rates,
-    isLoading,
     currencies,
     lastUpdated,
+    isCurrenciesLoading,
+    isExchangeRatesLoading,
     getCurrencies,
     getRatesByBaseCurrency,
   } = useCurrenciesAndRates();
@@ -55,9 +56,10 @@ export const useCalculatorViewModel = () => {
   return {
     currenciesAndRates: {
       rates,
-      isLoading,
       currencies,
       lastUpdated,
+      isCurrenciesLoading,
+      isExchangeRatesLoading,
       getCurrencies,
       getRatesByBaseCurrency,
     },

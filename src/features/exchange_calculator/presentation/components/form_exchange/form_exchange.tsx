@@ -41,15 +41,20 @@ const FormExchange = () => {
       <AppLabel text="Amount">
         <AppCurrencyInput
           name={FormExchangeFields.amount}
-          prefix={prefix}
-          placeholder={placeholder}
-          defaultValue={amount}
+          value={amount}
           decimalsLimit={2}
+          defaultValue={amount}
+          placeholder={placeholder}
+          prefix={prefix}
           onValueChange={handleValueChange}
           onBlur={form.handleBlur}
           error={form.errors.amount}
           onClick={handleReset}
-          value={amount}
+          /* 
+            Is possible configure the input to allow negative values.
+            
+            allowNegativeValue={false}
+          */
         />
       </AppLabel>
 

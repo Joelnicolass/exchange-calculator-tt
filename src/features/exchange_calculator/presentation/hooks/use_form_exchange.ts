@@ -1,12 +1,13 @@
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { isNegative, mapToArr } from "../../../../common/utils";
+import { mapToArr } from "../../../../common/utils";
 import {
   INITIAL_STATE_AMOUNT,
   INITIAL_STATE_FROM,
   INITIAL_STATE_TO,
 } from "../constants";
 import { Currency } from "../../domain/entities/currency/currency.entity";
+import { Amount } from "../../domain/value_objects/amount/amount.value_object";
 
 /**
  * Custom hook for managing the exchange form.
@@ -28,9 +29,21 @@ export const useFormExchange = ({
   const ERROR_MIN_AMOUNT = "Amount must be greater than 0.00";
   const ERROR_REQUIRED = "Amount is required";
 
-  // TODO! mover a logica de negocio en domain
   const validationSchema = yup.object({
-    amount: yup.number().required(ERROR_REQUIRED).min(0.01, ERROR_MIN_AMOUNT),
+    /* 
+      Is posible to use this validationSchema, but I prefer to use the Amount class to validate the amount.
+
+      amount: yup.number().required(ERROR_REQUIRED).min(0.01, ERROR_MIN_AMOUNT)
+    */
+
+    amount: yup
+      .number()
+      .required(ERROR_REQUIRED)
+      .test({
+        name: "isPositive",
+        message: ERROR_MIN_AMOUNT,
+        test: (value) => Amount.ensureValidAmount(value),
+      }),
   });
 
   const form = useFormik({
@@ -48,7 +61,7 @@ export const useFormExchange = ({
   };
 
   const handleReset = () => {
-    form.setFieldValue(FormExchangeFields.amount, "");
+    form.setFieldValue(FormExchangeFields.amount, undefined);
   };
 
   const handleFromCurrencyChange = (

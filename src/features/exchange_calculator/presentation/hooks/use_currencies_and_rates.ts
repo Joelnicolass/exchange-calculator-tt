@@ -24,7 +24,11 @@ import {
 export const useCurrenciesAndRates = () => {
   const INITIAL_STATE_CURRENCY = new Map<string, Currency>();
 
-  const { handler: handleApiResponse, isLoading } = useHandleApiResponse();
+  const { handler: handleCurrencies, isLoading: isCurrenciesLoading } =
+    useHandleApiResponse();
+
+  const { handler: handleExchangeRates, isLoading: isExchangeRatesLoading } =
+    useHandleApiResponse();
 
   const [currencies, setCurrencies] = useState<Map<string, Currency>>(
     INITIAL_STATE_CURRENCY
@@ -33,14 +37,14 @@ export const useCurrenciesAndRates = () => {
   const [lastUpdated, setLastUpdated] = useState<Date>();
 
   const getCurrencies = async () =>
-    await handleApiResponse(
+    await handleCurrencies(
       () => currencyUseCases.getCurrencies.execute(),
       (data) => setCurrencies(data),
       () => showToast(ToastType.ERROR, ERROR_MESSAGE_CURRENCY)
     );
 
   const getRatesByBaseCurrency = async (baseCurrency: Currency) => {
-    await handleApiResponse(
+    await handleExchangeRates(
       () => currencyUseCases.getRatesByBaseCurrency.execute(baseCurrency),
       (data) => {
         setRates(data.rates);
@@ -64,7 +68,8 @@ export const useCurrenciesAndRates = () => {
     rates,
     currencies,
     lastUpdated,
-    isLoading,
+    isCurrenciesLoading,
+    isExchangeRatesLoading,
     getCurrencies,
     getRatesByBaseCurrency,
   };

@@ -1,4 +1,6 @@
-import { isNegative } from "../../../../common/utils";
+import { Amount } from "../../domain/value_objects/amount/amount.value_object";
+import { calculatorUseCases } from "../../infrastructure/usecases/calculator.usecases_impl";
+import { NULL_OR_UNDEFINED } from "../constants";
 
 /**
  * Custom hook that calculates the result of a currency exchange based on the provided parameters.
@@ -27,42 +29,61 @@ export const useResultExchange = ({
 }) => {
   const isValidRates = rates instanceof Map && rates.has(toCurrency);
 
-  // TODO! Mover a un usecase
   const calculate = () => {
-    if (!isValidRates) return 0;
+    if (!isValidRates) return NULL_OR_UNDEFINED;
 
     const rate = rates.get(toCurrency);
-    if (!rate) return 0;
+    if (!rate) return NULL_OR_UNDEFINED;
 
-    const numericAmount = Number(amount);
-    if (isNaN(numericAmount)) return 0;
+    const result = calculatorUseCases.calculateExchange
+      .execute(rate, amount)
+      .fold(
+        (error) => 0,
+        (result) => result
+      );
 
-    return numericAmount * rate!;
+    return result;
   };
 
-  // TODO! Mover a un usecase
   const calculateInverted = () => {
-    if (!isValidRates) return 1;
+    if (!isValidRates) return NULL_OR_UNDEFINED;
 
-    return 1 / rates.get(toCurrency)!;
+    const rate = rates.get(toCurrency);
+    if (!rate) return NULL_OR_UNDEFINED;
+
+    const result = calculatorUseCases.calculateInverseExchange
+      .execute(rate, 1)
+      .fold(
+        (error) => 0,
+        (result) => result
+      );
+
+    return result;
   };
 
   const fromAmountFormatted = () => {
-    if (isNegative(amount)) return `0`;
+    const name =
+      currencies.get(fromCurrency) && currencies.get(fromCurrency)?.name;
 
-    return `${amount ? amount : 0} ${currencies.get(fromCurrency)?.name} =`;
+    if (!name) return NULL_OR_UNDEFINED;
+    if (!Amount.ensureValidAmount(amount)) return `-`;
+
+    return `${amount ? amount : NULL_OR_UNDEFINED} ${name} =`;
   };
 
   const toAmountFormatted = () => {
-    if (isNegative(amount)) return `0`;
+    const name = currencies.get(toCurrency) && currencies.get(toCurrency)?.name;
 
-    return `${calculate()} ${currencies.get(toCurrency)?.name}`;
+    if (!name) return NULL_OR_UNDEFINED;
+    if (!Amount.ensureValidAmount(amount)) return NULL_OR_UNDEFINED;
+
+    return `${calculate()} ${name}`;
   };
 
   const baseRateConversion = {
     fromAmount: "1",
     fromSymbol: currencies.get(fromCurrency)?.id || "",
-    toAmount: rates?.get(toCurrency)?.toString() || "",
+    toAmount: rates?.get(toCurrency)?.toString() || NULL_OR_UNDEFINED,
     toSymbol: currencies.get(toCurrency)?.id || "",
   };
 
