@@ -5,7 +5,7 @@ import AppSelect from "../../../../../common/presentation/components/app_select/
 import AppIconButton from "../../../../../common/presentation/components/app_icon_button/app_icon_button";
 import DollarChange from "../../../../../common/presentation/components/icons/dollar_change";
 import styles from "./form_exchange.module.css";
-import { useFormExchange } from "../../hooks/use_form_exchange";
+import { useCalculatorContext } from "../../hooks/use_calculator_context";
 
 /**
  * This component represents a form for exchanging currencies.
@@ -13,20 +13,23 @@ import { useFormExchange } from "../../hooks/use_form_exchange";
  */
 const FormExchange = () => {
   const {
-    form,
-    amount,
-    options,
-    placeholder,
-    prefix,
-    toCurrency,
-    fromCurrency,
-    FormExchangeFields,
-    handleReset,
-    handleValueChange,
-    handleFromCurrencyChange,
-    handleToCurrencyChange,
-    invertCurrencies,
-  } = useFormExchange();
+    formExchange: {
+      form,
+      prefix,
+      amount,
+      options,
+      toCurrency,
+      placeholder,
+      fromCurrency,
+      FormExchangeFields,
+      handleReset,
+      invertCurrencies,
+      handleValueChange,
+      handleToCurrencyChange,
+      handleFromCurrencyChange,
+    },
+    currenciesAndRates: { currencies, getRatesByBaseCurrency },
+  } = useCalculatorContext();
 
   return (
     <form
@@ -54,7 +57,10 @@ const FormExchange = () => {
         <AppSelect
           key={fromCurrency}
           value={fromCurrency}
-          onChange={handleFromCurrencyChange}
+          onChange={(e) => {
+            handleFromCurrencyChange(e);
+            getRatesByBaseCurrency(currencies.get(e.target.value)!);
+          }}
           options={options}
           renderOption={(options) =>
             options.map((currency) => (
@@ -68,7 +74,10 @@ const FormExchange = () => {
 
       <AppIconButton
         icon={<DollarChange color="#1a8dff" />}
-        onClick={invertCurrencies}
+        onClick={() => {
+          invertCurrencies();
+          getRatesByBaseCurrency(currencies.get(toCurrency)!);
+        }}
         type="button"
       />
 
@@ -76,7 +85,9 @@ const FormExchange = () => {
         <AppSelect
           key={toCurrency}
           value={toCurrency}
-          onChange={handleToCurrencyChange}
+          onChange={(e) => {
+            handleToCurrencyChange(e);
+          }}
           options={options}
           renderOption={(options) =>
             options.map((currency) => (

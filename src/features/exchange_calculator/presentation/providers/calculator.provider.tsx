@@ -7,32 +7,16 @@ type Props = {
 };
 
 const CalculatorProvider = ({ children }: Props) => {
-  const {
-    amount,
-    currencies,
-    fromCurrency,
-    toCurrency,
-    rates,
-    lastUpdated,
-    setAmount,
-    invertCurrencies,
-    handleFromCurrencyChange,
-    handleToCurrencyChange,
-  } = useCalculatorViewModel();
+  const { currenciesAndRates, formExchange, resultExchange, notice } =
+    useCalculatorViewModel();
 
   return (
     <CalculatorContext.Provider
       value={{
-        amount,
-        currencies,
-        fromCurrency,
-        toCurrency,
-        rates,
-        lastUpdated,
-        setAmount,
-        invertCurrencies,
-        handleFromCurrencyChange,
-        handleToCurrencyChange,
+        formExchange,
+        resultExchange,
+        currenciesAndRates,
+        notice,
       }}
     >
       {children}

@@ -1,38 +1,55 @@
-import { useCalculatorContext } from "./use_calculator_context";
+import { isNegative } from "../../../../common/utils";
 
 /**
  * Custom hook for calculating exchange rates and formatting amounts.
  * @returns An object containing formatted values.
  */
-export const useResultExchange = () => {
-  const { amount, fromCurrency, currencies, toCurrency, rates } =
-    useCalculatorContext();
+export const useResultExchange = ({
+  rates,
+  amount,
+  fromCurrency,
+  toCurrency,
+  currencies,
+}: {
+  rates?: Map<string, number>;
+  amount: string;
+  fromCurrency: string;
+  toCurrency: string;
+  currencies: Map<string, { id: string; name: string }>;
+}) => {
+  const isValidRates = rates instanceof Map && rates.has(toCurrency);
 
   // TODO! Mover a un usecase
   const calculate = () => {
-    if (!rates) return;
+    if (!isValidRates) return 0;
+
     const rate = rates.get(toCurrency);
+    if (!rate) return 0;
 
-    if (!rate) return 1;
-    if (isNaN(Number(amount))) return 1;
+    const numericAmount = Number(amount);
+    if (isNaN(numericAmount)) return 0;
 
-    return Number(amount) * rate;
+    return numericAmount * rate!;
   };
 
   // TODO! Mover a un usecase
   const calculateInverted = () => {
-    if (amount && rates) return 1 / rates.get(toCurrency)!;
+    if (!isValidRates) return 1;
 
-    return "";
+    return 1 / rates.get(toCurrency)!;
   };
 
-  const fromAmountFormatted = `${amount} ${
-    currencies.get(fromCurrency)?.name
-  } =`;
+  const fromAmountFormatted = () => {
+    if (isNegative(amount)) return `0`;
 
-  const toAmountFormatted = `${calculate()} ${
-    currencies.get(toCurrency)?.name
-  }`;
+    return `${amount ? amount : 0} ${currencies.get(fromCurrency)?.name} =`;
+  };
+
+  const toAmountFormatted = () => {
+    if (isNegative(amount)) return `0`;
+
+    return `${calculate()} ${currencies.get(toCurrency)?.name}`;
+  };
 
   const baseRateConversion = {
     fromAmount: "1",
@@ -51,9 +68,9 @@ export const useResultExchange = () => {
   return {
     calculate,
     calculateInverted,
-    fromAmountFormatted,
-    toAmountFormatted,
     baseRateConversion,
     invertedBaseRateConversion,
+    toAmountFormatted: toAmountFormatted(),
+    fromAmountFormatted: fromAmountFormatted(),
   };
 };

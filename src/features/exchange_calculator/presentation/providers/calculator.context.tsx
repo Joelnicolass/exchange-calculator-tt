@@ -1,19 +1,14 @@
 import { createContext } from "react";
-import { Currency } from "../../domain/entities/currency/currency.entity";
+import { useCurrenciesAndRates } from "../hooks/use_currencies_and_rates";
+import { useFormExchange } from "../hooks/use_form_exchange";
+import { useResultExchange } from "../hooks/use_result_exchange";
+import { useNotice } from "../hooks/use_notice";
 
-export interface CalculatorContextProps {
-  amount: string;
-  currencies: Map<string, Currency>;
-  fromCurrency: string;
-  toCurrency: string;
-  rates: Map<string, number> | undefined;
-  lastUpdated: Date | undefined;
-  setAmount: (amount: string) => void;
-  invertCurrencies: () => void;
-  handleFromCurrencyChange: (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => void;
-  handleToCurrencyChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-}
+export type CalculatorViewModel = {
+  currenciesAndRates: ReturnType<typeof useCurrenciesAndRates>;
+  formExchange: ReturnType<typeof useFormExchange>;
+  resultExchange: ReturnType<typeof useResultExchange>;
+  notice: ReturnType<typeof useNotice>;
+};
 
-export const CalculatorContext = createContext({} as CalculatorContextProps);
+export const CalculatorContext = createContext({} as CalculatorViewModel);

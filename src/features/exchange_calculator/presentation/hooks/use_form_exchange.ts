@@ -1,25 +1,19 @@
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { isNegative, mapToArr } from "../../../../common/utils";
-import { useCalculatorContext } from "./use_calculator_context";
+import {
+  INITIAL_STATE_AMOUNT,
+  INITIAL_STATE_FROM,
+  INITIAL_STATE_TO,
+} from "../constants";
+import { Currency } from "../../domain/entities/currency/currency.entity";
 
-/**
- * Custom hook for managing the form state.
- *
- * @returns An object containing the form state and various handlers and values related to the exchange calculator.
- */
-export const useFormExchange = () => {
-  const {
-    amount,
-    fromCurrency,
-    toCurrency,
-    currencies,
-    setAmount,
-    handleFromCurrencyChange,
-    handleToCurrencyChange,
-    invertCurrencies,
-  } = useCalculatorContext();
-
+// TODO! documentar
+export const useFormExchange = ({
+  currencies,
+}: {
+  currencies: Map<string, Currency>;
+}) => {
   enum FormExchangeFields {
     amount = "amount",
     fromCurrency = "fromCurrency",
@@ -36,49 +30,67 @@ export const useFormExchange = () => {
 
   const form = useFormik({
     initialValues: {
-      amount: amount,
-      fromCurrency: fromCurrency,
-      toCurrency: toCurrency,
+      amount: INITIAL_STATE_AMOUNT,
+      fromCurrency: INITIAL_STATE_FROM,
+      toCurrency: INITIAL_STATE_TO,
     },
-    onSubmit: () => {},
     validationSchema: validationSchema,
+    onSubmit: () => {},
   });
-
-  const prefix = `${
-    currencies.get(fromCurrency)
-      ? `${currencies.get(fromCurrency)?.symbol}`
-      : "$"
-  } `;
-
-  const placeholder = `${currencies.get(fromCurrency)?.symbol} 0.00`;
-
-  const options = mapToArr(currencies);
 
   const handleValueChange = (value: string | undefined) => {
     form.setFieldValue(FormExchangeFields.amount, value);
-
-    if (isNegative(value || "")) return;
-    setAmount(value || "");
   };
 
   const handleReset = () => {
-    form.resetForm();
-    setAmount("");
+    form.setFieldValue(FormExchangeFields.amount, "");
   };
+
+  const handleFromCurrencyChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const id = event.target.value;
+    form.setFieldValue(FormExchangeFields.fromCurrency, id);
+  };
+
+  const handleToCurrencyChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const id = event.target.value;
+    form.setFieldValue(FormExchangeFields.toCurrency, id);
+  };
+
+  const invertCurrencies = () => {
+    form.setFieldValue(FormExchangeFields.fromCurrency, form.values.toCurrency);
+
+    form.setFieldValue(FormExchangeFields.toCurrency, form.values.fromCurrency);
+  };
+
+  const prefix = `${
+    currencies.get(form.values.fromCurrency)
+      ? `${currencies.get(form.values.fromCurrency)?.symbol}`
+      : "$"
+  } `;
+
+  const placeholder = `${
+    currencies.get(form.values.fromCurrency)?.symbol
+  } 0.00`;
+
+  const options = mapToArr(currencies);
 
   return {
     form,
-    amount,
+    amount: form.values.amount,
+    toCurrency: form.values.toCurrency,
+    fromCurrency: form.values.fromCurrency,
     prefix,
-    placeholder,
     options,
-    toCurrency,
-    fromCurrency,
+    placeholder,
     FormExchangeFields,
     handleReset,
+    invertCurrencies,
     handleValueChange,
     handleFromCurrencyChange,
     handleToCurrencyChange,
-    invertCurrencies,
   };
 };

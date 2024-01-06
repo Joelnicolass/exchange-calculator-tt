@@ -4,18 +4,18 @@ import AppNotice from "../../../../../common/presentation/components/app_notice/
 import LinksAndLastUpdated from "../links_and_last_updated/links_and_last_updated";
 
 import styles from "./calculator_conversion_and_notice.module.css";
-import { useNoticeAndLastUpdated } from "../../hooks/use_notice_and_last_updated";
+import { useNotice } from "../../hooks/use_notice";
+import { useCalculatorContext } from "../../hooks/use_calculator_context";
 
 /**
  * Container component for displaying the conversion rate and notice.
  */
 const ConversionAndNoticeContainer = () => {
   const {
-    NOTICE,
-    baseRateConversion,
-    invertedBaseRateConversion,
-    lastUpdated,
-  } = useNoticeAndLastUpdated();
+    currenciesAndRates: { lastUpdated },
+    resultExchange: { baseRateConversion, invertedBaseRateConversion },
+    notice: { NOTICE },
+  } = useCalculatorContext();
 
   return (
     <section className={styles.footer}>
