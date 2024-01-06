@@ -1,6 +1,6 @@
 import React from "react";
 import { CalculatorContext } from "./calculator.context";
-import { useCalculatorViewModel } from "../view_model/calculator.view_model";
+import { useCalculator } from "../../view_model/calculator.view_model";
 
 type Props = {
   children: React.ReactNode | React.ReactNode[];
@@ -13,7 +13,7 @@ type Props = {
  */
 const CalculatorProvider = ({ children }: Props) => {
   const { currenciesAndRates, formExchange, resultExchange, notice } =
-    useCalculatorViewModel();
+    useCalculator();
 
   return (
     <CalculatorContext.Provider

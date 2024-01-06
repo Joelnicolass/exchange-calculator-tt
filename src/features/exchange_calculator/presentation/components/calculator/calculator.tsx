@@ -1,7 +1,7 @@
 import React from "react";
 import FormExchangeContainer from "../calculator_form_exchange_container/calculator_form_exchange_container";
 import ConversionAndNoticeContainer from "../calculator_conversion_and_notice/calculator_conversion_and_notice";
-import CalculatorProvider from "../../providers/calculator.provider";
+import CalculatorProvider from "../../providers/calculator/calculator.provider";
 
 import styles from "./calculator.module.css";
 import ResultExchangeContainer from "../calculator_result_exchange_container/calculator_result_exchange_container";

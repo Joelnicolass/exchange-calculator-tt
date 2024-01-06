@@ -9,7 +9,7 @@ import { useResultExchange } from "../hooks/use_result_exchange";
  *
  * @returns The calculator view model object.
  */
-export const useCalculatorViewModel = () => {
+export const useCalculator = () => {
   const {
     rates,
     currencies,
