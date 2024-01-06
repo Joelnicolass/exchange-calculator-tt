@@ -8,7 +8,7 @@ interface Props extends React.HTMLAttributes<HTMLLabelElement> {
 }
 
 /**
- * Component for a label with text and secondary content.
+ * Component for a label with text and secondary content. Composition Pattern.
  *
  * @component
  * @param {Object} props - The component props.

@@ -1,0 +1,19 @@
+.title {
+  font-size: var(--text-size-xl);
+}
+
+.sm {
+  font-size: var(--text-size-sm);
+}
+
+.md {
+  font-size: var(--text-size-md);
+}
+
+.lg {
+  font-size: var(--text-size-lg);
+}
+
+.xl {
+  font-size: var(--text-size-xl);
+}

@@ -1,55 +1,29 @@
 import React from "react";
 
 import Calculator from "../../components/calculator/calculator";
+import BackgroundLayout from "../../components/background_layout/background_layout";
+import AppSeparator from "../../../../../common/presentation/components/app_separator/app_separator";
+import AppTitle from "../../../../../common/presentation/components/app_title/app_title";
+
+import styles from "./calculator_screen.module.css";
 
 const CalculatorScreen = () => {
   return (
-    <>
-      <div
-        style={{
-          position: "absolute",
-          top: "0",
-          left: "0",
-          width: "100%",
-          height: "40%",
-          backgroundColor: "#1a8dff",
-          zIndex: -1,
-        }}
-      />
-      <div
-        style={{
-          width: "100%",
-          marginTop: "calc(60px + 3rem)",
-          padding: "0 1rem",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
-          flexDirection: "column",
-        }}
-      >
-        <h1
-          style={{
-            color: "#fff",
-            fontSize: "32px",
-          }}
-        >
-          100 EUR to USD - Convert Euros to US Dollars
-        </h1>
-        <div
-          style={{
-            marginBottom: "3rem",
-          }}
-        ></div>
-        <Calculator>
-          <section>
-            <Calculator.FormExchange />
-            <Calculator.ResultExchange />
-          </section>
-          <Calculator.ConversionAndNotice />
-        </Calculator>
-      </div>
-    </>
+    <div className={styles.container}>
+      <BackgroundLayout />
+      <AppTitle color={"white"}>
+        100 EUR to USD - Convert Euros to US Dollars
+      </AppTitle>
+
+      <AppSeparator height="md" />
+      <Calculator>
+        <section>
+          <Calculator.FormExchange />
+          <Calculator.ResultExchange />
+        </section>
+        <Calculator.ConversionAndNotice />
+      </Calculator>
+    </div>
   );
 };
 

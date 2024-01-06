@@ -1,4 +1,8 @@
 import React from "react";
+import AppNav from "../app_nav/app_nav";
+import AppTitle from "../app_title/app_title";
+
+import styles from "./app_layout.module.css";
 
 type Props = {
   children: React.ReactNode | React.ReactNode[];
@@ -6,40 +10,12 @@ type Props = {
 
 const AppLayout = ({ children }: Props) => {
   return (
-    <main
-      style={{
-        position: "relative",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "space-between",
-        minHeight: "100vh",
-      }}
-    >
-      <nav
-        style={{
-          padding: "0 1rem",
-          height: "60px",
-          backgroundColor: "#0e1342",
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-start",
-          position: "fixed",
-          top: "0",
-          zIndex: 1,
-        }}
-      >
-        <h1
-          style={{
-            color: "#fff",
-            fontSize: "18px",
-          }}
-        >
+    <main className={styles.container}>
+      <AppNav>
+        <AppTitle size="md" color="white">
           Currency exchange
-        </h1>
-      </nav>
+        </AppTitle>
+      </AppNav>
 
       {children}
     </main>
