@@ -11,7 +11,7 @@ interface Props<OptionType> {
 }
 
 /**
- * Renders a custom select component.
+ * Renders a custom select component. Render Prop Pattern.
  *
  * @template OptionType - The type of options in the select.
  * @param {Props<OptionType>} props - The props for the select component.

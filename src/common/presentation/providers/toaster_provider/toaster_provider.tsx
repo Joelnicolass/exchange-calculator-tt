@@ -5,6 +5,11 @@ type Props = {
   children: React.ReactNode | React.ReactNode[];
 };
 
+/**
+ * Provides a toaster component to display notifications.
+ *
+ * @param children - The child components to render.
+ */
 const ToasterProvider = ({ children }: Props) => {
   return (
     <>

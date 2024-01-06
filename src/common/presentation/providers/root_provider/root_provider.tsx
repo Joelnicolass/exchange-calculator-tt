@@ -6,6 +6,11 @@ type Props = {
   children: React.ReactNode | React.ReactNode[];
 };
 
+/**
+ * RootProvider component. Compound for other providers.
+ *
+ * @param children - The child components to be rendered.
+ */
 const RootProvider = ({ children }: Props) => {
   return (
     <ThemeProvider>

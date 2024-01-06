@@ -6,6 +6,11 @@ type Props = {
   children: React.ReactNode | React.ReactNode[];
 };
 
+/**
+ * CalculatorProvider component.
+ *
+ * @param children - The child components to be rendered within the CalculatorProvider.
+ */
 const CalculatorProvider = ({ children }: Props) => {
   const { currenciesAndRates, formExchange, resultExchange, notice } =
     useCalculatorViewModel();

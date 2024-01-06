@@ -11,4 +11,8 @@ export type CalculatorViewModel = {
   notice: ReturnType<typeof useNotice>;
 };
 
+/**
+ * This file contains the implementation of the calculator context provider.
+ * The calculator context provider is responsible for managing the state and logic related to the exchange calculator feature.
+ */
 export const CalculatorContext = createContext({} as CalculatorViewModel);

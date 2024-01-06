@@ -10,6 +10,17 @@ import {
   INITIAL_STATE_FROM,
 } from "../constants";
 
+/**
+ * Custom hook that provides currencies, exchange rates, and related functions.
+ *
+ * @returns An object containing the following properties:
+ *   - rates: A map of exchange rates, where the key is the currency ID and the value is the exchange rate.
+ *   - currencies: A map of currencies, where the key is the currency ID and the value is the currency object.
+ *   - lastUpdated: The date when the exchange rates were last updated.
+ *   - isLoading: A boolean indicating whether the data is currently being loaded.
+ *   - getCurrencies: A function to fetch the list of currencies.
+ *   - getRatesByBaseCurrency: A function to fetch the exchange rates based on a given base currency.
+ */
 export const useCurrenciesAndRates = () => {
   const INITIAL_STATE_CURRENCY = new Map<string, Currency>();
 

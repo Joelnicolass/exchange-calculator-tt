@@ -3,6 +3,12 @@ import { useFormExchange } from "../hooks/use_form_exchange";
 import { useNotice } from "../hooks/use_notice";
 import { useResultExchange } from "../hooks/use_result_exchange";
 
+/**
+ * Hook that provides a view model for the calculator component.
+ * It combines the functionality of other hooks to provide the necessary data and functions.
+ *
+ * @returns The calculator view model object.
+ */
 export const useCalculatorViewModel = () => {
   const {
     rates,

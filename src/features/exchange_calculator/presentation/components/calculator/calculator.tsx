@@ -11,7 +11,7 @@ interface Props {
 }
 
 /**
- * Calculator component.
+ * Calculator component. Compound Component Pattern.
  *
  * @param {Props} props - The component props.
  * @param {ReactNode} props.children - The child elements.

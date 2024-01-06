@@ -8,7 +8,12 @@ import {
 } from "../constants";
 import { Currency } from "../../domain/entities/currency/currency.entity";
 
-// TODO! documentar
+/**
+ * Custom hook for managing the exchange form.
+ *
+ * @param currencies - A map of currencies.
+ * @returns An object containing form values, handlers, and other properties related to the exchange form.
+ */
 export const useFormExchange = ({
   currencies,
 }: {

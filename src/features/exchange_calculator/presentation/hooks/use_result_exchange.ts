@@ -1,8 +1,16 @@
 import { isNegative } from "../../../../common/utils";
 
 /**
- * Custom hook for calculating exchange rates and formatting amounts.
- * @returns An object containing formatted values.
+ * Custom hook that calculates the result of a currency exchange based on the provided parameters.
+ *
+ * @param {Object} options - The options for the currency exchange.
+ * @param {Map<string, number>} options.rates - The exchange rates for different currencies.
+ * @param {string} options.amount - The amount to be exchanged.
+ * @param {string} options.fromCurrency - The currency to be exchanged from.
+ * @param {string} options.toCurrency - The currency to be exchanged to.
+ * @param {Map<string, { id: string; name: string }>} options.currencies - The available currencies.
+ *
+ * @returns {Object} - An object containing the calculated values and formatted strings.
  */
 export const useResultExchange = ({
   rates,
