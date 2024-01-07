@@ -115,4 +115,5 @@ https://www.figma.com/file/pXwlwP49aKLoTJqHj7jWQR/Currency-exchange?type=design&
 - react-currency-input-field: input de moneda
 - react-dom: renderizado de la aplicación
 - react-hot-toast: notificaciones
+- react-shimmer-effects: efectos de carga
 - yup: control de validaciones
