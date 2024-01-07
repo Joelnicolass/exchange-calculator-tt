@@ -5,3 +5,10 @@
   font-size: var(--text-size-xl);
   font-weight: var(--text-b);
 }
+
+.result_exchange p {
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+}

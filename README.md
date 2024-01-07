@@ -31,6 +31,10 @@ Para ejecutar el proyecto, ejecutar el siguiente comando:
 npm run dev
 ```
 
+El proyecto se ejecutará en http://localhost:5173 por defecto.
+
+- O ingresar en https://exchange-calculator-five.vercel.app
+
 ## Documentación API REST
 
 https://www.vatcomply.com/documentation

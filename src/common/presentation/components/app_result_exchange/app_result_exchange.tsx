@@ -14,8 +14,8 @@ type Props = {
 const AppResultExchange = ({ toText, fromText }: Props): JSX.Element => {
   return (
     <section className={styles.result_exchange}>
-      <p>{fromText}</p>
-      <p>{toText}</p>
+      <p title={fromText}>{fromText}</p>
+      <p title={toText}>{toText}</p>
     </section>
   );
 };
