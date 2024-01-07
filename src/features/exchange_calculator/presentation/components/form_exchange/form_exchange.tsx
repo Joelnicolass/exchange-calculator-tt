@@ -29,6 +29,7 @@ const FormExchange = () => {
       handleFromCurrencyChange,
     },
     currenciesAndRates: { currencies, getRatesByBaseCurrency },
+    handlers: { onAmountChange, onFromCurrencyChange, onToCurrencyChange },
   } = useCalculatorContext();
 
   return (
@@ -46,10 +47,16 @@ const FormExchange = () => {
           defaultValue={amount}
           placeholder={placeholder}
           prefix={prefix}
-          onValueChange={handleValueChange}
+          onValueChange={(value) => {
+            handleValueChange(value);
+            onAmountChange(value || 0);
+          }}
           onBlur={form.handleBlur}
           error={form.errors.amount}
-          onClick={handleReset}
+          onClick={() => {
+            handleReset();
+            onAmountChange(0);
+          }}
           /* 
             Is possible configure the input to allow negative values.
             
@@ -63,8 +70,10 @@ const FormExchange = () => {
           key={fromCurrency}
           value={fromCurrency}
           onChange={(e) => {
+            const _currency = currencies.get(e.target.value)!;
             handleFromCurrencyChange(e);
-            getRatesByBaseCurrency(currencies.get(e.target.value)!);
+            getRatesByBaseCurrency(_currency);
+            onFromCurrencyChange(_currency);
           }}
           options={options}
           renderOption={(options) =>
@@ -80,8 +89,12 @@ const FormExchange = () => {
       <AppIconButton
         icon={<DollarChange color="#1a8dff" />}
         onClick={() => {
+          const _toCurrency = currencies.get(toCurrency)!;
+          const _fromCurrency = currencies.get(fromCurrency)!;
           invertCurrencies();
-          getRatesByBaseCurrency(currencies.get(toCurrency)!);
+          getRatesByBaseCurrency(_toCurrency);
+          onFromCurrencyChange(_toCurrency);
+          onToCurrencyChange(_fromCurrency);
         }}
         type="button"
       />
@@ -91,7 +104,9 @@ const FormExchange = () => {
           key={toCurrency}
           value={toCurrency}
           onChange={(e) => {
+            const _currency = currencies.get(e.target.value)!;
             handleToCurrencyChange(e);
+            onToCurrencyChange(_currency);
           }}
           options={options}
           renderOption={(options) =>

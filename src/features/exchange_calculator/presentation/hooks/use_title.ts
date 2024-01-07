@@ -3,43 +3,48 @@ import {
   INITIAL_STATE_AMOUNT,
   INITIAL_STATE_FROM,
   INITIAL_STATE_TO,
+  INITIAl_STATE_NAME_FROM,
+  INITIAl_STATE_NAME_TO,
 } from "../constants";
+import { Currency } from "../../domain/entities/currency/currency.entity";
 
 export const useTitle = () => {
-  const [titleAmount, setTitleAmount] = useState(INITIAL_STATE_AMOUNT);
+  const [fromCurrencyId, setFromCurrencyId] = useState(INITIAL_STATE_FROM);
+  const [toCurrencyId, setToCurrencyId] = useState(INITIAL_STATE_TO);
+  const [fromCurrencyName, setFromCurrencyName] = useState(
+    INITIAl_STATE_NAME_FROM
+  );
+  const [toCurrencyName, setToCurrencyName] = useState(INITIAl_STATE_NAME_TO);
+  const [amountTitle, setAmountTitle] = useState<string | number>(
+    INITIAL_STATE_AMOUNT
+  );
 
-  const [titleCurrencyIDFrom, setTitleCurrencyFrom] =
-    useState(INITIAL_STATE_FROM);
+  const formatTitle = () => {
+    const isPlural = Number(amountTitle) > 1 ? "s" : "";
 
-  const [titleCurrencyIDTo, setTitleCurrencyTo] = useState(INITIAL_STATE_TO);
-
-  const [titleCurrencyNameFrom, setTitleCurrencyNameFrom] =
-    useState(INITIAL_STATE_FROM);
-
-  const [titleCurrencyNameTo, setTitleCurrencyNameTo] =
-    useState(INITIAL_STATE_TO);
-
-  const title = `${titleAmount} ${titleCurrencyIDFrom} to ${titleCurrencyIDTo} - Convert ${titleCurrencyNameFrom} to ${titleCurrencyNameTo}`;
-
-  const changeTitleAmount = (amount: string) => setTitleAmount(amount);
-
-  const changeTitleCurrencyFrom = (
-    currencyID: string,
-    currencyName: string
-  ) => {
-    setTitleCurrencyFrom(currencyID);
-    setTitleCurrencyNameFrom(currencyName);
+    return `${amountTitle} ${fromCurrencyId} to ${toCurrencyId} - Convert ${fromCurrencyName}${isPlural} to ${toCurrencyName}${isPlural}`;
   };
 
-  const changeTitleCurrencyTo = (currencyID: string, currencyName: string) => {
-    setTitleCurrencyTo(currencyID);
-    setTitleCurrencyNameTo(currencyName);
+  const updateAmountTitle = (amount: string | number) => {
+    setAmountTitle(amount);
+  };
+
+  const updateFromCurrency = (currency: Currency) => {
+    setFromCurrencyId(currency.id);
+    setFromCurrencyName(currency.name);
+  };
+
+  const updateToCurrency = (currency: Currency) => {
+    setToCurrencyId(currency.id);
+    setToCurrencyName(currency.name);
   };
 
   return {
-    title,
-    changeTitleAmount,
-    changeTitleCurrencyFrom,
-    changeTitleCurrencyTo,
+    formatTitle,
+    update: {
+      amountTitle: updateAmountTitle,
+      fromCurrency: updateFromCurrency,
+      toCurrency: updateToCurrency,
+    },
   };
 };

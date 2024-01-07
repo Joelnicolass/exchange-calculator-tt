@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CalculatorContext } from "../providers/calculator/calculator.context";
+import { CalculatorContext } from "../contexts/calculator/calculator.context";
 
 /**
  * Custom hook to access the calculator context.

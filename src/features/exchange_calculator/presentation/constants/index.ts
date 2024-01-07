@@ -1,3 +1,5 @@
+export const INITIAl_STATE_NAME_FROM = "US Dollar";
+export const INITIAl_STATE_NAME_TO = "Euro";
 export const INITIAL_STATE_FROM = "USD";
 export const INITIAL_STATE_TO = "EUR";
 export const INITIAL_STATE_AMOUNT = "1.00";
