@@ -41,7 +41,44 @@ https://www.figma.com/file/pXwlwP49aKLoTJqHj7jWQR/Currency-exchange?type=design&
 
 ## Estructura de carpetas
 
-![struct](./struct.png)
+```
+├── src
+│ ├── App.tsx
+│ ├── common
+│ │ ├── domain
+│ │ ├── infrastructure
+│ │ ├── presentation
+│ │ │ ├── components
+│ │ │ │ ├── app_components
+│ │ │ │ └── icons
+│ │ │ ├── hooks
+│ │ │ └── providers
+│ │ └── utils
+│ ├── features
+│ │ └── exchange_calculator
+│ │ ├── domain
+│ │ │ ├── datasource
+│ │ │ ├── entities
+│ │ │ ├── repositories
+│ │ │ ├── usecases
+│ │ │ └── value_objects
+│ │ ├── infrastructure
+│ │ │ ├── adapters
+│ │ │ ├── datasoruces
+│ │ │ │ └── remote
+│ │ │ ├── repositories
+│ │ │ ├── types
+│ │ │ └── usecases
+│ │ └── presentation
+│ │ ├── components
+│ │ ├── constants
+│ │ ├── contexts_providers
+│ │ ├── hooks
+│ │ ├── view_model
+│ │ └── views
+│ ├── index.css
+│ ├── main.tsx
+```
 
 - Common: Contiene elementos comunes a toda la aplicación, como componentes, hooks, providers y utilidades.
 - Features: Contiene las funcionalidades de la aplicación, separadas por carpetas (Vertical Slicing).
