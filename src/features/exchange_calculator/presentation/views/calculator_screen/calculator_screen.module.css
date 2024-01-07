@@ -1,5 +1,5 @@
 .container {
-  min-height: calc(100vh - 60px);
+  height: calc(100vh - 60px);
   background: linear-gradient(
     to bottom,
     var(--color-primary) 0%,
