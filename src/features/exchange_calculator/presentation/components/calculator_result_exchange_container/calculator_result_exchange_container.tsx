@@ -11,6 +11,11 @@ const ResultExchangeContainer = () => {
     currenciesAndRates: { isExchangeRatesLoading },
   } = useCalculatorContext();
 
+  /**
+   * Renders a shimmer component while the exchange rates are loading.
+   *
+   * @returns The shimmer component.
+   */
   if (isExchangeRatesLoading) return <FormResultExchangeShimmer />;
 
   return (
