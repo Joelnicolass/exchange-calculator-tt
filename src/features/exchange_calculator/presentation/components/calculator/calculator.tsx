@@ -4,9 +4,8 @@ import ConversionAndNoticeContainer from "../calculator_conversion_and_notice/ca
 
 import styles from "./calculator.module.css";
 import ResultExchangeContainer from "../calculator_result_exchange_container/calculator_result_exchange_container";
-import { CalculatorContext } from "../../contexts/calculator/calculator.context";
-import { useCalculator } from "../../view_model/calculator.view_model";
 import { Currency } from "../../../domain/entities/currency/currency.entity";
+import CalculatorProvider from "../../contexts_providers/calculator/calculator.provider";
 
 interface Props {
   children: React.ReactNode | React.ReactNode[];
@@ -28,31 +27,14 @@ const Calculator = ({
   onToCurrencyChanged,
   children,
 }: Props): JSX.Element => {
-  const { currenciesAndRates, formExchange, resultExchange, notice } =
-    useCalculator();
-
   return (
-    <CalculatorContext.Provider
-      value={{
-        currenciesAndRates,
-        formExchange,
-        resultExchange,
-        notice,
-        handlers: {
-          onAmountChange: (amount: number | string) => {
-            onAmountChanged && onAmountChanged(amount);
-          },
-          onFromCurrencyChange: (currency: Currency) => {
-            onFromCurrencyChanged && onFromCurrencyChanged(currency);
-          },
-          onToCurrencyChange: (currency: Currency) => {
-            onToCurrencyChanged && onToCurrencyChanged(currency);
-          },
-        },
-      }}
+    <CalculatorProvider
+      onAmountChanged={onAmountChanged}
+      onFromCurrencyChanged={onFromCurrencyChanged}
+      onToCurrencyChanged={onToCurrencyChanged}
     >
       <article className={styles.calculator}>{children}</article>
-    </CalculatorContext.Provider>
+    </CalculatorProvider>
   );
 };
 /**
