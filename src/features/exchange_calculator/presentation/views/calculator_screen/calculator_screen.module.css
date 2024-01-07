@@ -1,4 +1,20 @@
 .container {
+  position: relative;
+  min-height: calc(100vh - 60px);
+  width: 100%;
+  margin-top: calc(60px);
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: calc(100vh - 60px);
   background: linear-gradient(
     to bottom,
@@ -7,13 +23,7 @@
     white 40%,
     white 100%
   );
-  width: 100%;
-  margin-top: calc(60px);
-  padding: 0 1rem;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  flex-direction: column;
+  z-index: -1;
 }
 
 .titleContainer {

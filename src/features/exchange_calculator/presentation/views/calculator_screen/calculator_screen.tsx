@@ -15,10 +15,11 @@ const CalculatorScreen = () => {
   const { formatTitle, update } = useTitle();
 
   return (
-    <div className={styles.container}>
-      <div className={styles.titleContainer}>
+    <article className={styles.container}>
+      <div className={styles.background}></div>
+      <section className={styles.titleContainer}>
         <AppTitle color={"white"}>{formatTitle()}</AppTitle>
-      </div>
+      </section>
 
       <AppSeparator height="md" />
 
@@ -44,7 +45,7 @@ const CalculatorScreen = () => {
         </section>
         <Calculator.ConversionAndNotice />
       </Calculator>
-    </div>
+    </article>
   );
 };
 
