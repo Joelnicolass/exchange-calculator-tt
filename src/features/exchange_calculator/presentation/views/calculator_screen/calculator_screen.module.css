@@ -1,5 +1,5 @@
 .container {
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   background: linear-gradient(
     to bottom,
     var(--color-primary) 0%,
@@ -7,7 +7,6 @@
     white 40%,
     white 100%
   );
-
   width: 100%;
   margin-top: calc(60px);
   padding: 0 1rem;
@@ -15,7 +14,6 @@
   align-items: center;
   text-align: center;
   flex-direction: column;
-  max-width: 1300px;
 }
 
 .titleContainer {
