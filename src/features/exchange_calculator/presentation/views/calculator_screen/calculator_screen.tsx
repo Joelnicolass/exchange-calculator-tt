@@ -1,5 +1,4 @@
 import Calculator from "../../components/calculator/calculator";
-import BackgroundLayout from "../../components/background_layout/background_layout";
 import AppSeparator from "../../../../../common/presentation/components/app_separator/app_separator";
 import AppTitle from "../../../../../common/presentation/components/app_title/app_title";
 
@@ -17,7 +16,6 @@ const CalculatorScreen = () => {
 
   return (
     <div className={styles.container}>
-      <BackgroundLayout />
       <div className={styles.titleContainer}>
         <AppTitle color={"white"}>{formatTitle()}</AppTitle>
       </div>
