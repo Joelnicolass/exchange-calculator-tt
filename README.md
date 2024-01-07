@@ -39,6 +39,21 @@ https://www.vatcomply.com/documentation
 
 https://www.figma.com/file/pXwlwP49aKLoTJqHj7jWQR/Currency-exchange?type=design&node-id=0-1&mode=design
 
+## Consideraciones
+
+### UX/UI
+
+- Se optó por utilizar el radius de 4px de forma general para mantener la consistencia en el diseño.
+- Se alinearon los inputs y el botón de inversión de campos para mantener la consistencia en el diseño.
+- El footer se mantiene como parte de la card en la vista de mobile para mantener la consistencia en el diseño.
+- Se limitó el ancho de la card a 1300px para mantener la consistencia en el diseño.
+
+### Funcionalidad
+
+- Se limitaron los decimales a 2.
+- Se limitó el input de moneda a 10 caracteres.
+- Se sanitizó la lista de monedas disponibles solo por aquellas que continen un rate de conversión.
+
 ## Estructura de carpetas
 
 ```

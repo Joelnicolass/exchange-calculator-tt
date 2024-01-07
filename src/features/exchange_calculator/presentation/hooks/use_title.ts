@@ -32,7 +32,6 @@ export const useTitle = () => {
 
   const updateAmountTitle = (amount: string | number) => {
     if (!Amount.ensureValidAmount(amount)) return setAmountTitle(0);
-
     setAmountTitle(amount);
   };
 
