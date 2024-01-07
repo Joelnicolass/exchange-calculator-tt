@@ -10,6 +10,12 @@
   max-width: 1300px;
 }
 
+.titleContainer {
+  display: flex;
+  align-items: center;
+  min-height: 100px;
+}
+
 @media (max-width: 768px) {
   .container {
     margin-bottom: calc(60px + 2rem);

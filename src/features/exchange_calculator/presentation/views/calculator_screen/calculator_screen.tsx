@@ -18,7 +18,9 @@ const CalculatorScreen = () => {
   return (
     <div className={styles.container}>
       <BackgroundLayout />
-      <AppTitle color={"white"}>{formatTitle()}</AppTitle>
+      <div className={styles.titleContainer}>
+        <AppTitle color={"white"}>{formatTitle()}</AppTitle>
+      </div>
 
       <AppSeparator height="md" />
 
