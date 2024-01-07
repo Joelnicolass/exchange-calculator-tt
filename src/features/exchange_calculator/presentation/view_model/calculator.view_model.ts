@@ -17,6 +17,7 @@ export const useCalculator = () => {
     isCurrenciesLoading,
     isExchangeRatesLoading,
     getCurrencies,
+    sanitizeCurrencies,
     getRatesByBaseCurrency,
   } = useCurrenciesAndRates();
 
@@ -61,6 +62,7 @@ export const useCalculator = () => {
       isCurrenciesLoading,
       isExchangeRatesLoading,
       getCurrencies,
+      sanitizeCurrencies,
       getRatesByBaseCurrency,
     },
 

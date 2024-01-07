@@ -7,4 +7,8 @@ export const ERROR_MESSAGE_CURRENCY =
   "Oops, it seems that the currencies are not available at the moment. 😔";
 export const ERROR_MESSAGE_EXCHANGE_RATE =
   "Oops, it seems that this exchange rate is not available at the moment. 😔";
+export const ERROR_MIN_AMOUNT = "Amount must be greater than 0.00";
+export const ERROR_REQUIRED = "Amount is required";
 export const NULL_OR_UNDEFINED = "-";
+export const DECIMAL_LIMIT = 2;
+export const MAX_LENGTH_AMOUNT = 10;

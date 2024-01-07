@@ -2,6 +2,8 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import { mapToArr } from "../../../../common/utils";
 import {
+  ERROR_MIN_AMOUNT,
+  ERROR_REQUIRED,
   INITIAL_STATE_AMOUNT,
   INITIAL_STATE_FROM,
   INITIAL_STATE_TO,
@@ -25,9 +27,6 @@ export const useFormExchange = ({
     fromCurrency = "fromCurrency",
     toCurrency = "toCurrency",
   }
-
-  const ERROR_MIN_AMOUNT = "Amount must be greater than 0.00";
-  const ERROR_REQUIRED = "Amount is required";
 
   const validationSchema = yup.object({
     /* 

@@ -7,8 +7,14 @@ import AppTitle from "../../../../../common/presentation/components/app_title/ap
 
 import styles from "./calculator_screen.module.css";
 import { useTitle } from "../../hooks/use_title";
+import { useWelcome } from "../../hooks/use_welcome";
 
+/**
+ * Represents the Calculator Screen component.
+ * This component displays the calculator screen with the exchange calculator functionality.
+ */
 const CalculatorScreen = () => {
+  useWelcome();
   const { formatTitle, update } = useTitle();
 
   return (

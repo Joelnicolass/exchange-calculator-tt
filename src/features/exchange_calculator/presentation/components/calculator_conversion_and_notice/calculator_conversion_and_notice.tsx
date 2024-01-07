@@ -4,7 +4,6 @@ import AppNotice from "../../../../../common/presentation/components/app_notice/
 import LinksAndLastUpdated from "../links_and_last_updated/links_and_last_updated";
 
 import styles from "./calculator_conversion_and_notice.module.css";
-import { useNotice } from "../../hooks/use_notice";
 import { useCalculatorContext } from "../../hooks/use_calculator_context";
 
 /**

@@ -8,6 +8,10 @@ import {
 } from "../constants";
 import { Currency } from "../../domain/entities/currency/currency.entity";
 
+/**
+ * Custom hook that manages the title state and provides functions to update it.
+ * @returns An object containing the formatTitle function and update functions for amountTitle, fromCurrency, and toCurrency.
+ */
 export const useTitle = () => {
   const [fromCurrencyId, setFromCurrencyId] = useState(INITIAL_STATE_FROM);
   const [toCurrencyId, setToCurrencyId] = useState(INITIAL_STATE_TO);

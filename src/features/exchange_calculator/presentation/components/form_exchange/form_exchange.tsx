@@ -6,6 +6,7 @@ import AppIconButton from "../../../../../common/presentation/components/app_ico
 import DollarChange from "../../../../../common/presentation/components/icons/dollar_change";
 import styles from "./form_exchange.module.css";
 import { useCalculatorContext } from "../../hooks/use_calculator_context";
+import { DECIMAL_LIMIT, MAX_LENGTH_AMOUNT } from "../../constants";
 
 /**
  * This component represents a form for exchanging currencies.
@@ -43,7 +44,8 @@ const FormExchange = () => {
         <AppCurrencyInput
           name={FormExchangeFields.amount}
           value={amount}
-          decimalsLimit={2}
+          decimalsLimit={DECIMAL_LIMIT}
+          maxLength={MAX_LENGTH_AMOUNT}
           defaultValue={amount}
           placeholder={placeholder}
           prefix={prefix}

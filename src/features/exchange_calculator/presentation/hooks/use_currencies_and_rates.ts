@@ -9,6 +9,7 @@ import {
   ERROR_MESSAGE_EXCHANGE_RATE,
   INITIAL_STATE_FROM,
 } from "../constants";
+import { Rate } from "../../domain/entities/rate/rate.entity";
 
 /**
  * Custom hook that provides currencies, exchange rates, and related functions.
@@ -20,6 +21,7 @@ import {
  *   - isLoading: A boolean indicating whether the data is currently being loaded.
  *   - getCurrencies: A function to fetch the list of currencies.
  *   - getRatesByBaseCurrency: A function to fetch the exchange rates based on a given base currency.
+ *   - sanitizeCurrencies: A function to remove currencies that do not have exchange rates.
  */
 export const useCurrenciesAndRates = () => {
   const INITIAL_STATE_CURRENCY = new Map<string, Currency>();
@@ -36,29 +38,57 @@ export const useCurrenciesAndRates = () => {
   const [rates, setRates] = useState<Map<Currency["id"], number>>();
   const [lastUpdated, setLastUpdated] = useState<Date>();
 
+  const _deleteCurrenciesWithoutRates = (
+    currencies: Map<string, Currency>,
+    rates: Map<Currency["id"], number>
+  ) => {
+    const currenciesWithRates = new Map<string, Currency>();
+
+    rates.forEach((_, key) => {
+      const currency = currencies.get(key);
+      if (currency) currenciesWithRates.set(key, currency);
+    });
+
+    return currenciesWithRates;
+  };
+
   const getCurrencies = async () =>
     await handleCurrencies(
       () => currencyUseCases.getCurrencies.execute(),
       (data) => setCurrencies(data),
-      () => showToast(ToastType.ERROR, ERROR_MESSAGE_CURRENCY)
+      (error) => showToast(ToastType.ERROR, ERROR_MESSAGE_CURRENCY)
     );
 
-  const getRatesByBaseCurrency = async (baseCurrency: Currency) => {
+  const getRatesByBaseCurrency = async (baseCurrency: Currency) =>
     await handleExchangeRates(
       () => currencyUseCases.getRatesByBaseCurrency.execute(baseCurrency),
       (data) => {
         setRates(data.rates);
         setLastUpdated(data.date);
+
+        if (currencies.size > 0) sanitizeCurrencies(currencies, data.rates);
       },
-      () => showToast(ToastType.ERROR, ERROR_MESSAGE_EXCHANGE_RATE)
+      (error) => showToast(ToastType.ERROR, ERROR_MESSAGE_EXCHANGE_RATE)
     );
+
+  const sanitizeCurrencies = (
+    currencies: Map<string, Currency>,
+    rates: Map<Currency["id"], number>
+  ) => {
+    const newList = _deleteCurrenciesWithoutRates(currencies, rates);
+
+    setCurrencies(newList);
   };
 
   useEffect(() => {
     const init = async () => {
-      const currencies = await getCurrencies();
-      if (currencies instanceof Error) return;
-      await getRatesByBaseCurrency(currencies.get(INITIAL_STATE_FROM)!);
+      const currencies = (await getCurrencies()) as Map<string, Currency>;
+
+      const rate = (await getRatesByBaseCurrency(
+        currencies.get(INITIAL_STATE_FROM)!
+      )) as Rate;
+
+      sanitizeCurrencies(currencies, rate.rates);
     };
 
     init();
@@ -71,6 +101,7 @@ export const useCurrenciesAndRates = () => {
     isCurrenciesLoading,
     isExchangeRatesLoading,
     getCurrencies,
+    sanitizeCurrencies,
     getRatesByBaseCurrency,
   };
 };
