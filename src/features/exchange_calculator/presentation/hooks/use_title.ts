@@ -7,6 +7,7 @@ import {
   INITIAl_STATE_NAME_TO,
 } from "../constants";
 import { Currency } from "../../domain/entities/currency/currency.entity";
+import { Amount } from "../../domain/value_objects/amount/amount.value_object";
 
 /**
  * Custom hook that manages the title state and provides functions to update it.
@@ -30,6 +31,8 @@ export const useTitle = () => {
   };
 
   const updateAmountTitle = (amount: string | number) => {
+    if (!Amount.ensureValidAmount(amount)) return setAmountTitle(0);
+
     setAmountTitle(amount);
   };
 
