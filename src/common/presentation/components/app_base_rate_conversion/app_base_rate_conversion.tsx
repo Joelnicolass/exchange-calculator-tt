@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "./app_base_rate_conversion.module.css";
 
 type Props = {

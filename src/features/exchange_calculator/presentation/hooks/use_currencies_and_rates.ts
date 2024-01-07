@@ -56,7 +56,7 @@ export const useCurrenciesAndRates = () => {
     await handleCurrencies(
       () => currencyUseCases.getCurrencies.execute(),
       (data) => setCurrencies(data),
-      (error) => showToast(ToastType.ERROR, ERROR_MESSAGE_CURRENCY)
+      () => showToast(ToastType.ERROR, ERROR_MESSAGE_CURRENCY)
     );
 
   const getRatesByBaseCurrency = async (baseCurrency: Currency) =>
@@ -68,7 +68,7 @@ export const useCurrenciesAndRates = () => {
 
         if (currencies.size > 0) sanitizeCurrencies(currencies, data.rates);
       },
-      (error) => showToast(ToastType.ERROR, ERROR_MESSAGE_EXCHANGE_RATE)
+      () => showToast(ToastType.ERROR, ERROR_MESSAGE_EXCHANGE_RATE)
     );
 
   const sanitizeCurrencies = (

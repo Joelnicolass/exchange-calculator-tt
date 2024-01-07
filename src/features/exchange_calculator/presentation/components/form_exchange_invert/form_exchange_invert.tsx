@@ -1,4 +1,3 @@
-import React from "react";
 import AppIconButton from "../../../../../common/presentation/components/app_icon_button/app_icon_button";
 import DollarChange from "../../../../../common/presentation/components/icons/dollar_change";
 import { useCalculatorContext } from "../../hooks/use_calculator_context";

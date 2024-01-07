@@ -1,4 +1,3 @@
-import React from "react";
 import AppLabel from "../../../../../common/presentation/components/app_label/app_label";
 import AppCurrencyInput from "../../../../../common/presentation/components/app_currency_input/app_currency_input";
 import { useCalculatorContext } from "../../hooks/use_calculator_context";

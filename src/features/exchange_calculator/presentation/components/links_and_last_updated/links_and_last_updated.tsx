@@ -1,4 +1,3 @@
-import React from "react";
 import AppAnchor from "../../../../../common/presentation/components/app_anchor/app_anchor";
 import { formatDate } from "../../../../../common/utils";
 

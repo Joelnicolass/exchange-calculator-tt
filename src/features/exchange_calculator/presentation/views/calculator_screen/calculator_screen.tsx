@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 import Calculator from "../../components/calculator/calculator";
 import BackgroundLayout from "../../components/background_layout/background_layout";
 import AppSeparator from "../../../../../common/presentation/components/app_separator/app_separator";

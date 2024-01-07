@@ -1,4 +1,3 @@
-import React from "react";
 import AppResultExchange from "../../../../../common/presentation/components/app_result_exchange/app_result_exchange";
 import { useCalculatorContext } from "../../hooks/use_calculator_context";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import AppLabel from "../../../../../common/presentation/components/app_label/app_label";
 import AppSelect from "../../../../../common/presentation/components/app_select/app_select";
 import { useCalculatorContext } from "../../hooks/use_calculator_context";

@@ -1,0 +1,12 @@
+.nav {
+  padding: 0 1rem;
+  height: 60px;
+  background-color: var(--color-primary-900);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}

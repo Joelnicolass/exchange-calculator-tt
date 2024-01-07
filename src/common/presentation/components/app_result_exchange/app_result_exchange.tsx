@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "./app_result_exchange.module.css";
 
 type Props = {

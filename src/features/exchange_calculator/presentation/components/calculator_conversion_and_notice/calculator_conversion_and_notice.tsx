@@ -1,4 +1,3 @@
-import React from "react";
 import AppBaseRateConversion from "../../../../../common/presentation/components/app_base_rate_conversion/app_base_rate_conversion";
 import AppNotice from "../../../../../common/presentation/components/app_notice/app_notice";
 import LinksAndLastUpdated from "../links_and_last_updated/links_and_last_updated";

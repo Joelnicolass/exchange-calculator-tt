@@ -38,7 +38,7 @@ export const useResultExchange = ({
     const result = calculatorUseCases.calculateExchange
       .execute(rate, amount)
       .fold(
-        (error) => 0,
+        () => 0,
         (result) => result
       );
 
@@ -54,7 +54,7 @@ export const useResultExchange = ({
     const result = calculatorUseCases.calculateInverseExchange
       .execute(rate, 1)
       .fold(
-        (error) => 0,
+        () => 0,
         (result) => result
       );
 

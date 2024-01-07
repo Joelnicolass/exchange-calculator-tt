@@ -1,5 +1,3 @@
-import React from "react";
-
 type Props = {
   height?: "none" | "sm" | "md" | "lg";
   width?: "none" | "sm" | "md" | "lg";
