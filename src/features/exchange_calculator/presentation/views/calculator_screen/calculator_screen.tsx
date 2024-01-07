@@ -29,7 +29,12 @@ const CalculatorScreen = () => {
         onToCurrencyChanged={update.toCurrency}
       >
         <section>
-          <Calculator.FormExchange />
+          <Calculator.FormExchange>
+            <Calculator.FormExchange.Amount />
+            <Calculator.FormExchange.From />
+            <Calculator.FormExchange.Invert />
+            <Calculator.FormExchange.To />
+          </Calculator.FormExchange>
           <Calculator.ResultExchange />
         </section>
         <Calculator.ConversionAndNotice />

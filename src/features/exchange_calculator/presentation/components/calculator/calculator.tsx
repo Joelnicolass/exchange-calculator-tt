@@ -1,11 +1,11 @@
 import React from "react";
-import FormExchangeContainer from "../calculator_form_exchange_container/calculator_form_exchange_container";
 import ConversionAndNoticeContainer from "../calculator_conversion_and_notice/calculator_conversion_and_notice";
 
 import styles from "./calculator.module.css";
 import ResultExchangeContainer from "../calculator_result_exchange_container/calculator_result_exchange_container";
 import { Currency } from "../../../domain/entities/currency/currency.entity";
 import CalculatorProvider from "../../contexts_providers/calculator/calculator.provider";
+import FormExchange from "../form_exchange/form_exchange";
 
 interface Props {
   children: React.ReactNode | React.ReactNode[];
@@ -47,7 +47,7 @@ const Calculator = ({
  * @memberof Calculator
  * @type {React.ComponentType}
  */
-Calculator.FormExchange = FormExchangeContainer;
+Calculator.FormExchange = FormExchange;
 
 /**
  * Represents the ResultExchange component.
