@@ -26,7 +26,7 @@ const CalculatorProvider = ({
   onToCurrencyChanged,
   onFromCurrencyChanged,
 }: Props) => {
-  const { currenciesAndRates, formExchange, resultExchange, notice } =
+  const { currenciesAndRates, formExchange, resultExchange, notice, shimmer } =
     useCalculator();
 
   return (
@@ -36,6 +36,7 @@ const CalculatorProvider = ({
         formExchange,
         resultExchange,
         notice,
+        shimmer,
         handlers: {
           onAmountChange: (amount: number | string) => {
             onAmountChanged && onAmountChanged(amount);

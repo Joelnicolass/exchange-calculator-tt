@@ -1,0 +1,11 @@
+.container {
+  height: 100px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

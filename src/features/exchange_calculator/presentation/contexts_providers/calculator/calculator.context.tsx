@@ -4,6 +4,7 @@ import { useFormExchange } from "../../hooks/use_form_exchange";
 import { useResultExchange } from "../../hooks/use_result_exchange";
 import { useNotice } from "../../hooks/use_notice";
 import { Currency } from "../../../domain/entities/currency/currency.entity";
+import { useFormFieldsShimmer } from "../../hooks/use_form_fields_shimmer";
 
 /**
  * Represents the view model for the calculator context.
@@ -13,6 +14,9 @@ export type CalculatorViewModel = {
   formExchange: ReturnType<typeof useFormExchange>;
   resultExchange: ReturnType<typeof useResultExchange>;
   notice: ReturnType<typeof useNotice>;
+  shimmer: {
+    formFields: ReturnType<typeof useFormFieldsShimmer>;
+  };
   handlers: {
     /**
      * Handles the change of the amount value.

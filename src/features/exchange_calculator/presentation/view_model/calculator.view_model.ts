@@ -1,5 +1,6 @@
 import { useCurrenciesAndRates } from "../hooks/use_currencies_and_rates";
 import { useFormExchange } from "../hooks/use_form_exchange";
+import { useFormFieldsShimmer } from "../hooks/use_form_fields_shimmer";
 import { useNotice } from "../hooks/use_notice";
 import { useResultExchange } from "../hooks/use_result_exchange";
 
@@ -54,6 +55,8 @@ export const useCalculator = () => {
 
   const { NOTICE } = useNotice();
 
+  const { lines } = useFormFieldsShimmer();
+
   return {
     currenciesAndRates: {
       rates,
@@ -93,6 +96,12 @@ export const useCalculator = () => {
 
     notice: {
       NOTICE,
+    },
+
+    shimmer: {
+      formFields: {
+        lines,
+      },
     },
   };
 };
