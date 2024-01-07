@@ -4,6 +4,11 @@ import AppCurrencyInput from "../../../../../common/presentation/components/app_
 import { useCalculatorContext } from "../../hooks/use_calculator_context";
 import { DECIMAL_LIMIT, MAX_LENGTH_AMOUNT } from "../../constants";
 
+/**
+ * Component for rendering the form input for the exchange amount.
+ *
+ * @returns The rendered JSX element.
+ */
 const FormExchangeAmount = () => {
   const {
     formExchange: {

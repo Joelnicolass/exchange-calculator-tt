@@ -4,7 +4,9 @@ import DollarChange from "../../../../../common/presentation/components/icons/do
 import { useCalculatorContext } from "../../hooks/use_calculator_context";
 
 import styles from "./form_exchange_invert.module.css";
-
+/**
+ * Component for rendering a form to invert exchange currencies.
+ */
 const FormExchangeInvert = () => {
   const {
     formExchange: { toCurrency, fromCurrency, invertCurrencies },

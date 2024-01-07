@@ -3,6 +3,9 @@ import { IconProps, IconSize } from "../../../domain/types";
 
 export interface Props extends React.SVGProps<SVGSVGElement>, IconProps {}
 
+/**
+ * Component for displaying an icon representing a change in dollar value.
+ */
 const DollarChange = ({
   size = IconSize.MEDIUM,
   color = "#000",

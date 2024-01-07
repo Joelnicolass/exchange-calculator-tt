@@ -3,6 +3,11 @@ import AppLabel from "../../../../../common/presentation/components/app_label/ap
 import AppSelect from "../../../../../common/presentation/components/app_select/app_select";
 import { useCalculatorContext } from "../../hooks/use_calculator_context";
 
+/**
+ * Component for the exchange "To" form.
+ *
+ * @returns The FormExchangeTo component.
+ */
 const FormExchangeTo = () => {
   const {
     formExchange: { options, toCurrency, handleToCurrencyChange },

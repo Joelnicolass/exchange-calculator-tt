@@ -3,6 +3,9 @@ import AppLabel from "../../../../../common/presentation/components/app_label/ap
 import AppSelect from "../../../../../common/presentation/components/app_select/app_select";
 import { useCalculatorContext } from "../../hooks/use_calculator_context";
 
+/**
+ * Component that displays the currency selection form in the exchange calculator.
+ */
 const FormExchangeFrom = () => {
   const {
     formExchange: { options, fromCurrency, handleFromCurrencyChange },

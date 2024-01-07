@@ -23,11 +23,18 @@ const CalculatorScreen = () => {
       <AppTitle color={"white"}>{formatTitle()}</AppTitle>
 
       <AppSeparator height="md" />
+
+      {/* 
+        Is possible configure the calculator to show the conversion and notice section.
+      */}
       <Calculator
         onAmountChanged={update.amountTitle}
         onFromCurrencyChanged={update.fromCurrency}
         onToCurrencyChanged={update.toCurrency}
       >
+        {/* 
+          Is possible configure the calculator to show the form exchange section.
+        */}
         <section>
           <Calculator.FormExchange>
             <Calculator.FormExchange.Amount />

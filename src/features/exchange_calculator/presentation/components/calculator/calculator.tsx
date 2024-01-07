@@ -17,6 +17,10 @@ interface Props {
 /**
  * Calculator component. Compound Component Pattern.
  *
+ * This component is responsible for rendering the calculator component.
+ *
+ * This component has no external dependencies, it only depends on the internal components.
+ *
  * @param {Props} props - The component props.
  * @param {ReactNode} props.children - The child elements.
  * @returns {JSX.Element} The rendered Calculator component.
