@@ -26,6 +26,7 @@ const FormExchangeAmount = () => {
   return (
     <AppLabel text="Amount">
       <AppCurrencyInput
+        decimalSeparator="."
         name={FormExchangeFields.amount}
         value={amount}
         decimalsLimit={DECIMAL_LIMIT}
